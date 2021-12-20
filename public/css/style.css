@@ -1,0 +1,13 @@
+@font-face {
+	font-family: "ourson";
+	src: url("../font/SnellRoundhand-BlackScript.otf")
+}
+
+.ourson {
+	font-family: ourson;
+}
+
+.mirror {
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
+}
