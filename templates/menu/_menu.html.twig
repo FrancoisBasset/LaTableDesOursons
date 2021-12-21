@@ -1,7 +1,7 @@
 {% block body %}
 	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="position: fixed; width: 100%">
   		<div class="container-fluid">
-    		<a class="navbar-brand ourson" href="#">
+    		<a class="navbar-brand ourson" href="{{ path('accueil') }}">
 				<img src="{{ asset('img/favicon.png') }}" width="20px" />
 				La Table des Oursons
 				<img class="mirror" src="{{ asset('img/favicon.png') }}" width="20px" />
@@ -12,7 +12,7 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item">
-						<a class="nav-link" href="#">Le restaurant</a>
+						<a class="nav-link" href="{{ path('restaurant') }}">Le restaurant</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#">Les menus</a>
