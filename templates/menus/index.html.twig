@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}La Table des Oursons - Les menus{% endblock %}
+
+{% block body %}
+	{% include 'menu/_menu.html.twig' %}
+	<br><br><br><br>
+
+	<div style="top: 100px; border: 1px solid black; border-radius: 10px; text-align: center; padding-top: 20px; padding-bottom: 20px">
+		<img src="{{ asset('img/favicon.png') }}" width="20px" />
+		<img class="mirror" src="{{ asset('img/favicon.png') }}" width="20px" />
+		<h1 class="ourson">Menu de l'Ours</h1>
+
+		<h2 class="ourson">Les Entrées</h2>
+		<div>
+			<h5 class="ourson">Foie gras poelé 10</h5>
+			<h5 class="ourson">-</h5>
+			<h5 class="ourson">Viande des Grisons 12</h5>
+			<h5 class="ourson">-</h5>
+			<h5 class="ourson">Salade Savoyarde 14</h5>
+		</div>
+
+		<hr>
+
+		<h2 class="ourson">Les plats</h2>
+		<div>
+			<h5 class="ourson">Raclette traditionnelle, pommes de terre, fromage et charcuterie 14</h5>
+			<h5 class="ourson">-</h5>
+			<h5 class="ourson">Fondue Savoyarde 15</h5>
+			<h5 class="ourson">-</h5>
+			<h5 class="ourson">Tartiflette 11</h5>
+		</div>
+
+		<hr>
+
+		<h2 class="ourson">Les desserts</h2>
+		<div>
+			<h5 class="ourson">Crêpe à la crème de marron 6</h5>
+			<h5 class="ourson">-</h5>
+			<h5 class="ourson">Gaufre liègeoise 4</h5>
+			<h5 class="ourson">-</h5>
+			<h5 class="ourson">Tarte aux myrtilles 9</h5>
+		</div>
+	</div>
+
+	<div style="top: 100px; border: 1px solid black; border-radius: 10px; text-align: center; padding-top: 20px; padding-bottom: 20px">
+		<img src="{{ asset('img/favicon.png') }}" width="20px" />
+		<img class="mirror" src="{{ asset('img/favicon.png') }}" width="20px" />
+		<h1 class="ourson">Menu de l'Ourse</h1>
+
+		<h2 class="ourson">Les Entrées</h2>
+		<div>
+			<h5 class="ourson">Salade de chèvre chaud 13</h5>
+			<h5 class="ourson">-</h5>
+			<h5 class="ourson">Assiette de saumon fumé 12</h5>
+			<h5 class="ourson">-</h5>
+			<h5 class="ourson">Soupe d'artichaut 17</h5>
+		</div>
+
+		<hr>
+
+		<h2 class="ourson">Les Plats</h2>
+		<div>
+			<h5 class="ourson">Pates carbonara 15</h5>
+			<h5 class="ourson">-</h5>
+			<h5 class="ourson">Fondue Savoyarde 15</h5>
+			<h5 class="ourson">-</h5>
+			<h5 class="ourson">Omelette aux champignons 10</h5>
+		</div>
+
+		<hr>
+
+		<h2 class="ourson">Les Desserts</h2>
+		<div>
+			<h5 class="ourson">Glace à la myrtille 12</h5>
+			<h5 class="ourson">-</h5>
+			<h5 class="ourson">Nougat glacé 11</h5>
+			<h5 class="ourson">-</h5>
+			<h5 class="ourson">Crème brulée 7</h5>
+		</div>
+	</div>
+{% endblock %}
