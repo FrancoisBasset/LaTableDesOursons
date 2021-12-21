@@ -32,6 +32,12 @@ class Plat
      */
     private $image;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=CategoriePlat::class, inversedBy="plats")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categorie;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +75,18 @@ class Plat
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?CategoriePlat
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?CategoriePlat $categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }

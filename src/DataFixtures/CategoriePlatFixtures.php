@@ -12,14 +12,17 @@ class CategoriePlatFixtures extends Fixture
     {
 		$category = new CategoriePlat();
 		$category->setNom('Les Entrées');
+		$this->addReference("entrees", $category);
 		$manager->persist($category);
 
 		$category = new CategoriePlat();
 		$category->setNom('Les Plats');
+		$this->addReference("plats", $category);
 		$manager->persist($category);
 
 		$category = new CategoriePlat();
 		$category->setNom('Les Desserts');
+		$this->addReference("desserts", $category);
 		$manager->persist($category);
 
         $manager->flush();
