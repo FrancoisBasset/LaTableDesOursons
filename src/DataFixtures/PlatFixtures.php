@@ -10,36 +10,36 @@ class PlatFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-		$fondue = ["Fondue Savoyarde", 15, 'fondue_savoyarde'];
+		$fondue = ['Fondue Savoyarde', 15, 'fondue_savoyarde'];
 		
 		$entrees_ours = [
-			["Foie gras poêlé", 10, "foie_gras_poele"],
-			["Viande des Grisons", 12, "viande_des_grisons"],
-			["Salade Savoyarde", 14, "salade_savoyarde"]
+			['Foie gras poêlé', 10, 'foie_gras_poele'],
+			['Viande des Grisons', 12, 'viande_des_grisons'],
+			['Salade Savoyarde', 14, 'salade_savoyarde']
 		];
 		$plats_ours = [
-			["Raclette traditionnelle, pommes de terre, fromage et charcuterie", 14, 'raclette'],
-			["Tartiflette", 11, 'tartiflette']
+			['Raclette traditionnelle, pommes de terre, fromage et charcuterie', 14, 'raclette'],
+			['Tartiflette', 11, 'tartiflette']
 		];
 		$desserts_ours = [
-			["Crêpe à la crème de marron", 6, 'crepe_creme_de_marron'],
-			["Gaufre liègeoise", 4, 'gaufre_liegeoise'],
-			["Tarte aux myrtilles", 9, 'tarte_aux_myrtilles']
+			['Crêpe à la crème de marron', 6, 'crepe_creme_de_marron'],
+			['Gaufre liègeoise', 4, 'gaufre_liegeoise'],
+			['Tarte aux myrtilles', 9, 'tarte_aux_myrtilles']
 		];
 
 		$entrees_ourse = [
-			["Salade de chèvre chaud", 13, 'salade_de_chevre_chaud'],
-			["Assiette de saumon fumé", 12, 'assiette_de_saumon_fume'],
-			["Soupe d'artichaut", 17, 'soupe_d_artichaut']
+			['Salade de chèvre chaud', 13, 'salade_de_chevre_chaud'],
+			['Assiette de saumon fumé', 12, 'assiette_de_saumon_fume'],
+			['Soupe d\'artichaut', 17, 'soupe_d_artichaut']
 		];
 		$plats_ourse = [
-			["Pâtes carbonara", 15, 'pates_carbonara'],
-			["Omelette aux champignons", 10, 'omelette_aux_champignons']
+			['Pâtes carbonara', 15, 'pates_carbonara'],
+			['Omelette aux champignons', 10, 'omelette_aux_champignons']
 		];
 		$desserts_ourse = [
-			["Glace à la myrtille", 12, 'glace_a_la_myrtille'],
-			["Nougat glacé", 11, 'nougat_glace'],
-			["Crème brulée", 7, 'creme_brulee']
+			['Glace à la myrtille', 12, 'glace_a_la_myrtille'],
+			['Nougat glacé', 11, 'nougat_glace'],
+			['Crème brulée', 7, 'creme_brulee']
 		];
 
 		$ensemble = [

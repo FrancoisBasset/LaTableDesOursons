@@ -13,8 +13,8 @@ body {
 }
 
 @font-face {
-	font-family: "ourson";
-	src: url("../font/SnellRoundhand-BlackScript.otf")
+	font-family: 'ourson';
+	src: url('../font/SnellRoundhand-BlackScript.otf')
 }
 
 .ourson {
