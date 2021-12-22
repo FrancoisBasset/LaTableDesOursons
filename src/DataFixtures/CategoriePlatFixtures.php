@@ -16,7 +16,13 @@ class CategoriePlatFixtures extends Fixture
 			['Les Desserts', 'desserts_ours'],
 			['Les Entrées', 'entrees_ourse'],
 			['Les Plats', 'plats_ourse'],
-			['Les Desserts', 'desserts_ourse']
+			['Les Desserts', 'desserts_ourse'],
+
+			['Les Entrées', 'carte_entrees'],
+			['Les Plats', 'carte_plats'],
+			['Les Desserts', 'carte_desserts'],
+			['Les Boissons non-alcoolisés', 'carte_boissons_non_alcoolises'],
+			['Les Boissons alcoolisés', 'carte_boissons_alcoolises']
 		];
 
 		foreach ($categories as $c) {

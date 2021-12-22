@@ -11,6 +11,15 @@ class PlatFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
 		$fondue = ['Fondue Savoyarde', 15, 'fondue_savoyarde'];
+
+		$boissons_alcoolises = [
+			['Heineken', 3, 'heineken'],
+			['Martini', 4, 'martini']
+		];
+		$boissons_non_alcoolises = [
+			['Limonade', 2, 'limonade'],
+			['Jus d\'orange', 5, 'jus_d_orange']
+		];
 		
 		$entrees_ours = [
 			['Foie gras poêlé', 10, 'foie_gras_poele'],
@@ -48,7 +57,9 @@ class PlatFixtures extends Fixture
 			'plats_ours' => $plats_ours,
 			'plats_ourse' => $plats_ourse,
 			'desserts_ours' => $desserts_ours,
-			'desserts_ourse' => $desserts_ourse
+			'desserts_ourse' => $desserts_ourse,
+			'carte_boissons_alcoolises' => $boissons_alcoolises,
+			'carte_boissons_non_alcoolises' => $boissons_non_alcoolises
 		];
 
 		foreach ($ensemble as $nomCategorie => $plats) {
@@ -58,6 +69,13 @@ class PlatFixtures extends Fixture
 				$plat->setPrix($p[1]);
 				$plat->setImage($p[2].'.jpg');
 				$plat->addCategoriePlat($this->getReference($nomCategorie));
+				if (str_contains($nomCategorie, 'entrees')) {
+					$plat->addCategoriePlat($this->getReference('carte_entrees'));
+				} else if (str_contains($nomCategorie, 'plats')) {
+					$plat->addCategoriePlat($this->getReference('carte_plats'));
+				} else if (str_contains($nomCategorie, 'desserts')) {
+					$plat->addCategoriePlat($this->getReference('carte_desserts'));
+				}
 				$manager->persist($plat);
 			}
 		}
