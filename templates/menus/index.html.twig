@@ -7,17 +7,17 @@
 	<br><br><br><br>
 
 	{% for menu in menus %}
-		<div style="top: 100px; border: 1px solid black; border-radius: 10px; text-align: center; padding-top: 20px; padding-bottom: 20px">
-			<img src="{{ asset('img/favicon.png') }}" width="20px" />
-			<img class="mirror" src="{{ asset('img/favicon.png') }}" width="20px" />
-			<h1 class="ourson">{{ menu.nom }}</h1>
+		<div style='top: 100px; border: 1px solid black; border-radius: 10px; text-align: center; padding-top: 20px; padding-bottom: 20px'>
+			<img src='{{ asset('img/favicon.png') }}' width='20px' />
+			<img class='mirror' src='{{ asset('img/favicon.png') }}' width='20px' />
+			<h1 class='ourson'>{{ menu.nom }}</h1>
 
 			{% for categorie in menu.categories %}
-				<h2 class="ourson">{{ categorie.nom }}</h2>
+				<h2 class='ourson'>{{ categorie.nom }}</h2>
 				<div>
 					{% for plat in categorie.plats %}
-						<h5 class="ourson">{{ plat.nom }} {{ plat.prix }}</h5>
-						<h5 class="ourson">-</h5>
+						<h5 class='ourson'>{{ plat.nom }} {{ plat.prix }}</h5>
+						<h5 class='ourson'>-</h5>
 					{% endfor %}
 				</div>
 
