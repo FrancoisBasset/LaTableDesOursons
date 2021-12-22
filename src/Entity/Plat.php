@@ -40,16 +40,6 @@ class Plat
      */
     private $categorie;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Menu::class, inversedBy="plats")
-     */
-    private $menu;
-
-    public function __construct()
-    {
-        $this->menu = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -99,30 +89,6 @@ class Plat
     public function setCategorie(?CategoriePlat $categorie): self
     {
         $this->categorie = $categorie;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Menu[]
-     */
-    public function getMenu(): Collection
-    {
-        return $this->menu;
-    }
-
-    public function addMenu(Menu $menu): self
-    {
-        if (!$this->menu->contains($menu)) {
-            $this->menu[] = $menu;
-        }
-
-        return $this;
-    }
-
-    public function removeMenu(Menu $menu): self
-    {
-        $this->menu->removeElement($menu);
 
         return $this;
     }
