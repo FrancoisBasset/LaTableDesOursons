@@ -1,0 +1,1 @@
+sonar-scanner.bat -D"sonar.projectKey=La-Table-Des-Oursons" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.login=dcdf51c643f232daddef4bed183f5b669147a204"
