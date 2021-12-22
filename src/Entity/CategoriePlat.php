@@ -29,6 +29,11 @@ class CategoriePlat
      */
     private $plats;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Menu::class, inversedBy="categories")
+     */
+    private $menu;
+
     public function __construct()
     {
         $this->plats = new ArrayCollection();
@@ -71,6 +76,18 @@ class CategoriePlat
     public function removePlat(Plat $plat): self
     {
         $this->plats->removeElement($plat);
+
+        return $this;
+    }
+
+    public function getMenu(): ?Menu
+    {
+        return $this->menu;
+    }
+
+    public function setMenu(?Menu $menu): self
+    {
+        $this->menu = $menu;
 
         return $this;
     }

@@ -14,18 +14,18 @@ class MenuFixtures extends Fixture implements DependentFixtureInterface
 		$menu = new Menu();
 		$menu->setNom("Menu de l'Ours");
 		$menu->setPrix(22.50);
-		/*$menu->addCategorie($this->getReference('entrees_ours'));
-		$menu->addCategorie($this->getReference('plats_ours'));
-		$menu->addCategorie($this->getReference('desserts_ours'));*/
+		$menu->addCategory($this->getReference('entrees_ours'));
+		$menu->addCategory($this->getReference('plats_ours'));
+		$menu->addCategory($this->getReference('desserts_ours'));
 
 		$manager->persist($menu);
 
 		$menu = new Menu();
 		$menu->setNom("Menu de l'Ourse");
 		$menu->setPrix(20.80);
-		/*$menu->addCategorie($this->getReference('entrees_ourse'));
-		$menu->addCategorie($this->getReference('plats_ourse'));
-		$menu->addCategorie($this->getReference('desserts_ourse'));*/
+		$menu->addCategory($this->getReference('entrees_ourse'));
+		$menu->addCategory($this->getReference('plats_ourse'));
+		$menu->addCategory($this->getReference('desserts_ourse'));
 		$manager->persist($menu);
 
         $manager->flush();
