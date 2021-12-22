@@ -83,7 +83,7 @@ class PlatFixtures extends Fixture
 		$plat = new Plat();
 		$plat->setNom($fondue[0]);
 		$plat->setPrix($fondue[1]);
-		$plat->setImage($fondue[2]);
+		$plat->setImage($fondue[2].'.jpg');
 		$plat->addCategoriePlat($this->getReference('plats_ours'));
 		$plat->addCategoriePlat($this->getReference('plats_ourse'));
 		$manager->persist($plat);
