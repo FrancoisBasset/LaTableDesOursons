@@ -10,7 +10,7 @@
 		<div style='top: 100px; border: 1px solid black; border-radius: 10px; text-align: center; padding-top: 20px; padding-bottom: 20px'>
 			<img src='{{ asset('img/favicon.png') }}' width='20px' />
 			<img class='mirror' src='{{ asset('img/favicon.png') }}' width='20px' />
-			<h1 class='ourson'>{{ menu.nom }}</h1>
+			<h1 class='ourson'>{{ menu.nom }} {{ menu.prix }}</h1>
 
 			{% set c = 1 %}
 			{% for categorie in menu.categories %}
@@ -18,7 +18,7 @@
 				<div>
 					{% set p = 1 %}
 					{% for plat in categorie.plats %}
-						<h5 class='ourson'>{{ plat.nom }} {{ plat.prix }}</h5>
+						<h5 class='ourson'>{{ plat.nom }}</h5>
 
 						{% if p != categorie.plats|length %}
 							<h5 class='ourson'>-</h5>
@@ -36,4 +36,35 @@
 			{% endfor %}
 		</div>
 	{% endfor %}
+
+	{% if carte|length > 0 %}
+		<div style='top: 100px; border: 1px solid black; border-radius: 10px; text-align: center; padding-top: 20px; padding-bottom: 20px'>
+			<img src='{{ asset('img/favicon.png') }}' width='20px' />
+			<img class='mirror' src='{{ asset('img/favicon.png') }}' width='20px' />
+			<h1 class='ourson'>La carte</h1>
+
+			{% set c = 1 %}
+			{% for categorie in carte %}
+				<h2 class='ourson'>{{ categorie.nom }}</h2>
+				<div>
+					{% set p = 1 %}
+					{% for plat in categorie.plats %}
+						<h5 class='ourson'>{{ plat.nom }} {{ plat.prix }}</h5>
+
+						{% if p != categorie.plats|length %}
+							<h5 class='ourson'>-</h5>
+						{% endif %}
+
+						{% set p = p + 1 %}
+					{% endfor %}
+				</div>
+
+				{% if c != carte|length %}
+					<hr>
+				{% endif %}
+
+				{% set c = c + 1 %}
+			{% endfor %}
+		</div>
+	{% endif %}
 {% endblock %}

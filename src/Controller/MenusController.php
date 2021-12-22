@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CategoriePlatRepository;
 use App\Repository\MenuRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,12 +13,14 @@ class MenusController extends AbstractController
     /**
 	 * @Route("/menus", name="menus")
 	 */
-    public function index(MenuRepository $menuRepository): Response
+    public function index(MenuRepository $menuRepository, CategoriePlatRepository $categoriePlatRepository): Response
     {
 		$menus = $menuRepository->findAll();
+		$carte = $categoriePlatRepository->findCategoriesWithNoMenu();
 
         return $this->render('menus/index.html.twig', [
-			'menus' => $menus
+			'menus' => $menus,
+			'carte' => $carte
 		]);
     }
 }

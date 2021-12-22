@@ -19,22 +19,17 @@ class CategoriePlatRepository extends ServiceEntityRepository
         parent::__construct($registry, CategoriePlat::class);
     }
 
-    // /**
-    //  * @return CategoriePlat[] Returns an array of CategoriePlat objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+      * @return CategoriePlat[] Returns an array of CategoriePlat objects
+      */
+	public function findCategoriesWithNoMenu()
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('c.menu is null')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?CategoriePlat
