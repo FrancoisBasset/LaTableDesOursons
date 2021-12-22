@@ -16,10 +16,8 @@ class MenusController extends AbstractController
     {
 		$menus = $menuRepository->findAll();
 
-		
-
-		dump($menus);die();
-
-        return $this->render('menus/index.html.twig', []);
+        return $this->render('menus/index.html.twig', [
+			'menus' => $menus
+		]);
     }
 }
