@@ -76,6 +76,7 @@ class PlatFixtures extends Fixture
 				} else if (str_contains($nomCategorie, 'desserts')) {
 					$plat->addCategoriePlat($this->getReference('carte_desserts'));
 				}
+				$this->addReference($p[2], $plat);
 				$manager->persist($plat);
 			}
 		}

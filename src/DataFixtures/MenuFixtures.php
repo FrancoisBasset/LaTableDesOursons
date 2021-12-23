@@ -18,6 +18,7 @@ class MenuFixtures extends Fixture implements DependentFixtureInterface
 		$menu->addCategory($this->getReference('plats_ours'));
 		$menu->addCategory($this->getReference('desserts_ours'));
 
+		$this->addReference('menu_ours', $menu);
 		$manager->persist($menu);
 
 		$menu = new Menu();
@@ -26,6 +27,8 @@ class MenuFixtures extends Fixture implements DependentFixtureInterface
 		$menu->addCategory($this->getReference('entrees_ourse'));
 		$menu->addCategory($this->getReference('plats_ourse'));
 		$menu->addCategory($this->getReference('desserts_ourse'));
+
+		$this->addReference('menu_ourse', $menu);
 		$manager->persist($menu);
 
         $manager->flush();
