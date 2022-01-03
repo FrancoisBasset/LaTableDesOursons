@@ -14,7 +14,7 @@
 	{% for menu in menus %}
 		{% for categorie in menu.categories %}
 			{% for plat in categorie.plats %}
-				<img src='{{ asset('img/' ~ plat.image) }}' width="200px">
+				<img src='{{ asset('img/' ~ plat.image) }}' width='200px'>
 			{% endfor %}
 		{% endfor %}
 	{% endfor %}
