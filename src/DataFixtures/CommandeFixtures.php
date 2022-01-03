@@ -23,7 +23,7 @@ class CommandeFixtures extends Fixture implements DependentFixtureInterface
 		$commande->setPrenom('François');
 		$commande->setNom('Basset');
 		$commande->setPrix(25.62);
-		$commande->setEtat('commande');
+		$commande->setEtat('commandé');
 		
 		$commande->addMenu($commandeMenu);
 		$commande->addPlat($this->getReference('limonade'));

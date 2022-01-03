@@ -4,7 +4,13 @@
 
 {% block body %}
 	{% include 'menu/_menu.html.twig' %}
+	<br><br><br><br>
 
+	{{ form_start(form) }}
+		{{ form_rest(form) }}
+		<button type='submit'>Enregistrer</button>
+	{{ form_end(form) }}
+		
 	{% for menu in menus %}
 		{% for categorie in menu.categories %}
 			{% for plat in categorie.plats %}
