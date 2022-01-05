@@ -20,13 +20,13 @@ class CommandeMenu
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Menu::class)
+     * @ORM\ManyToOne(targetEntity=Menu::class, cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $menu;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Plat::class, fetch="EAGER")
+     * @ORM\ManyToMany(targetEntity=Plat::class, fetch="EAGER", cascade={"persist"})
      */
     private $plats;
 

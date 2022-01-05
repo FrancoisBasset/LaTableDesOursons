@@ -6,21 +6,41 @@
 	{% include 'menu/_menu.html.twig' %}
 	<br><br><br><br>
 
-	{{ form_start(form) }}
-		{{ form_label(form.prenom) }}
-		{{ form_widget(form.prenom) }}
+	{{ form_start(form, {'attr': {'class': 'form-control'}}) }}
+		{{ form_label(form.prenom, null, {'attr': {'class': 'form-label'}}) }}
+		{{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
 
-		{{ form_label(form.nom) }}
-		{{ form_widget(form.nom) }}
+		{{ form_label(form.nom, null, {'attr': {'class': 'form-label'}}) }}
+		{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
 
-		{{ form_label(form.prix) }}
-		{{ form_widget(form.prix) }}#}
+		{{ form_label(form.prix, null, {'attr': {'class': 'form-label'}}) }}
+		{{ form_widget(form.prix, {'attr': {'class': 'form-control'}}) }}
 
-		{{ form_label(form.plats) }}
-		{{ form_widget(form.plats) }}
+		{{ form_label(form.plats, null, {'attr': {'class': 'form-label'}}) }}
+		{{ form_widget(form.plats, {'attr': {'class': 'form-control'}}) }}
 
-		<button type='submit'>Enregistrer</button>
+		Menus
+		{% for menu in commandeMenus %}
+		<h6>{{ menu.menu.nom }}</h6>
+		<ul>
+		{% for plat in menu.plats %}
+			<li>{{ plat.nom }}</li>
+		{% endfor %}
+		</ul>
+	{% endfor %}
+		
+		<button type='submit' class='btn btn-success'>Enregistrer</button>
 	{{ form_end(form) }}
+
+	{{ form_start(form2, {'attr': {'class': 'form-control'}}) }}
+		{{ form_label(form2.menu,  null, {'attr': {'class': 'form-label'}}) }}
+		{{ form_widget(form2.menu, {'attr': {'class': 'form-control'}}) }}
+
+		{{ form_label(form2.plats,  null, {'attr': {'class': 'form-label'}}) }}
+		{{ form_widget(form2.plats, {'attr': {'class': 'form-control'}}) }}
+
+		<button>Ajouter un menu</button>
+	{{ form_end(form2) }}
 		
 	{#{% for menu in menus %}
 		{% for categorie in menu.categories %}
