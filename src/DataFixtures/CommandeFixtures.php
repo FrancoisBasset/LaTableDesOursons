@@ -25,7 +25,7 @@ class CommandeFixtures extends Fixture implements DependentFixtureInterface
 		$commande->setPrix(25.62);
 		$commande->setEtat('commandé');
 		
-		$commande->addMenu($commandeMenu);
+		$commande->addCommandeMenu($commandeMenu);
 		$commande->addPlat($this->getReference('limonade'));
 
 		$manager->persist($commandeMenu);

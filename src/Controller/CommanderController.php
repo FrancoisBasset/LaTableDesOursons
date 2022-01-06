@@ -42,7 +42,7 @@ class CommanderController extends AbstractController
 		if ($form->isSubmitted() && $form->isValid()) {
 			foreach ($commandeMenus as $commandeMenu) {
 				$manager->persist($commandeMenu);
-				$commande->addMenu($commandeMenu);
+				$commande->addCommandeMenu($commandeMenu);
 			}
 
 			$manager->persist($commande);
