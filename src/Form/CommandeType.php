@@ -12,10 +12,18 @@ class CommandeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('prenom')
-            ->add('nom')
-            ->add('prix')
-            ->add('plats')
+            ->add('prenom', null, [
+				'label' => 'commande.prenom'
+			])
+            ->add('nom', null, [
+				'label' => 'commande.nom'
+			])
+            ->add('prix', null, [
+				'label' => 'commande.prix'
+			])
+            ->add('plats', null, [
+				'label' => 'commande.plats'
+			])
         ;
     }
 

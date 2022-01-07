@@ -23,7 +23,7 @@
 		{{ form_label(form2.plats,  null, {'attr': {'class': 'form-label'}}) }}
 		{{ form_widget(form2.plats, {'attr': {'class': 'form-control'}}) }}
 
-		<button>Ajouter un menu</button>
+		<button>{{ 'commande.ajouterMenu'|trans }}</button>
 	{{ form_end(form2) }}
 
 	{{ form_start(form, {'attr': {'class': 'form-control'}}) }}
@@ -39,7 +39,7 @@
 		{{ form_label(form.plats, null, {'attr': {'class': 'form-label'}}) }}
 		{{ form_widget(form.plats, {'attr': {'class': 'form-control'}}) }}
 				
-		<button type='submit' class='btn btn-success'>Enregistrer</button>
+		<button type='submit' class='btn btn-success'>{{ 'commande.enregistrer'|trans }}</button>
 	{{ form_end(form) }}
 		
 	{#{% for menu in menus %}

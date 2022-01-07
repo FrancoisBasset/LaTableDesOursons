@@ -7,3 +7,13 @@ restaurant:
     p2: Before, during or after your ski session, come and enjoy our local specialties. We propose you menus raclettes, fondues, tartiflettes and pierrades. Potatoes, cheese and cold cuts for the raclette are at will. The restaurant offers a cheese and dessert platter. We also serve traditional French cuisine from all regions.
     p3: The restaurant also offers activities such as Christmas Eve with the arrival of Santa Claus on December 24 and New Year's Eve. The restaurant has a games room with a pool table and table soccer. The restaurant organizes birthdays, christenings, weddings, seminars and other events.
     p4: We accept payment in cash, checks, credit cards and luncheon vouchers.
+commande:
+    prenom: Firstname
+    nom: Lastname
+    prix: Price
+    plats: Dishes
+    ajouterMenu: Add menu
+    enregistrer: Save
+qrcode:
+    consigne: Here is the QR Code to show to the server to get your order
+    retourCommande: Back to the order page

@@ -9,6 +9,12 @@ use App\Form\CommandeType;
 use App\Repository\MenuRepository;
 use App\Service\GenerationCodeCommande;
 use Doctrine\ORM\EntityManagerInterface;
+use Endroid\QrCode\Builder\Builder;
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\Label\Alignment\LabelAlignmentCenter;
+use Endroid\QrCode\Label\Font\NotoSans;
+use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeMargin;
+use Endroid\QrCode\Writer\PngWriter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -49,7 +55,21 @@ class CommanderController extends AbstractController
 			$manager->flush();
 			$sessionInterface->clear();
 
-			return $this->redirectToRoute('accueil');
+			$result = Builder::create()
+				->writer(new PngWriter())
+				->data($commande->getCode())
+				->encoding(new Encoding('UTF-8'))
+				->size(300)
+				->margin(10)
+				->roundBlockSizeMode(new RoundBlockSizeModeMargin())
+				->labelText($commande->getCode())
+				->labelFont(new NotoSans(20))
+				->labelAlignment(new LabelAlignmentCenter())
+				->build();
+
+			return $this->render('commander/qrcode.html.twig', [
+				'qrcode' => $result->getDataUri()
+			]);
 		}
 
 		if ($form2->isSubmitted() && $form2->isValid()) {

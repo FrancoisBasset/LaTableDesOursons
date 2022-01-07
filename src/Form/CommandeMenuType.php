@@ -17,6 +17,7 @@ class CommandeMenuType extends AbstractType
         $builder
             ->add('menu')
 			->add('plats', EntityType::class, [
+				'label' => 'commande.plats',
 				'class' => Plat::class,
 				'query_builder' => function(PlatRepository $pr) {
 					return $pr->createQueryBuilder('p');

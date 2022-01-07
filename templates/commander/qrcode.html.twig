@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}La Table des Oursons - Confirmation{% endblock %}
+
+{% block body %}
+	{% include 'menu/_menu.html.twig' %}
+	<br><br><br><br>
+
+	<div style='text-align: center'>
+		<h5>{{ 'qrcode.consigne'|trans }}</h5>
+	
+		<img src='{{ qrcode }}'>
+		<br><br>
+
+		<a href='/commander'>
+			<button class='btn btn-success'>{{ 'qrcode.retourCommande'|trans }}</button>
+		</a>
+	</div>
+{% endblock %}
