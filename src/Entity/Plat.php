@@ -35,7 +35,7 @@ class Plat
     private $image;
 
     /**
-     * @ORM\ManyToMany(targetEntity=CategoriePlat::class, mappedBy="plats")
+     * @ORM\ManyToMany(targetEntity=CategoriePlat::class, mappedBy="plats", cascade={"persist"})
      */
     private $categoriePlats;
 
