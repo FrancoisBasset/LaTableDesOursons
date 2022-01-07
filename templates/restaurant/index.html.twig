@@ -7,10 +7,9 @@
 	<br><br><br><br>
 
 	<div>
-		{% set span = "<span class='ourson'>La Table des Oursons</span>" %}
 	    <p class='.container-sm text-center'>
 			<img src='{{ asset('img/favicon.png') }}' width='20px'>
-			{{ 'restaurant.p1'|trans({'%span%': span}) }}
+			{{ 'menu.restaurant'|trans }} <span class='ourson'>La Table des Oursons</span> {{ 'restaurant.p1'|trans }}
 			<img class='mirror' src='{{ asset('img/favicon.png') }}' width='20px'>
 		</p>
 	</div>
