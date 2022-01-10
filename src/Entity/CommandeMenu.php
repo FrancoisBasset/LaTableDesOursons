@@ -20,66 +20,29 @@ class CommandeMenu
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Menu::class, cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $menu;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Plat::class, fetch="EAGER", cascade={"persist"})
-     */
-    private $plats;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Commande::class, inversedBy="commandeMenus")
      * @ORM\JoinColumn(nullable=false)
      */
     private $commande;
 
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $menu = [];
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $plats = [];
+
     public function __construct()
     {
-        $this->plats = new ArrayCollection();
+		
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getMenu(): ?Menu
-    {
-        return $this->menu;
-    }
-
-    public function setMenu(?Menu $menu): self
-    {
-        $this->menu = $menu;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Plat[]
-     */
-    public function getPlats(): Collection
-    {
-        return $this->plats;
-    }
-
-    public function addPlat(Plat $plat): self
-    {
-        if (!$this->plats->contains($plat)) {
-            $this->plats[] = $plat;
-        }
-
-        return $this;
-    }
-
-    public function removePlat(Plat $plat): self
-    {
-        $this->plats->removeElement($plat);
-
-        return $this;
     }
 
     public function getCommande(): ?Commande
@@ -90,6 +53,30 @@ class CommandeMenu
     public function setCommande(?Commande $commande): self
     {
         $this->commande = $commande;
+
+        return $this;
+    }
+
+    public function getMenu(): ?array
+    {
+        return $this->menu;
+    }
+
+    public function setMenu(array $menu): self
+    {
+        $this->menu = $menu;
+
+        return $this;
+    }
+
+    public function getPlats(): ?array
+    {
+        return $this->plats;
+    }
+
+    public function setPlats(array $plats): self
+    {
+        $this->plats = $plats;
 
         return $this;
     }

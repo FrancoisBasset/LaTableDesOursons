@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\CommandeMenu;
+use App\Entity\Menu;
 use App\Entity\Plat;
 use App\Repository\PlatRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -15,14 +16,16 @@ class CommandeMenuType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('menu')
+            ->add('menu', EntityType::class, [
+				'class' => Menu::class,
+				'choice_label' => 'nom',
+				'mapped' => false
+			])
 			->add('plats', EntityType::class, [
 				'label' => 'commande.plats',
 				'class' => Plat::class,
-				'query_builder' => function(PlatRepository $pr) {
-					return $pr->createQueryBuilder('p');
-				},
 				'choice_label' => 'nom',
+				'mapped' => false,
 				'multiple' => true,
 				'group_by' => function($choice) {
 					if (isset($choice->getCategoriePlats()[0])) {

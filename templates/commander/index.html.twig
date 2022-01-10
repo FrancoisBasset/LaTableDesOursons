@@ -7,11 +7,11 @@
 	<br><br><br><br>
 
 	Menus
-	{% for menu in commandeMenus %}
-		<h6>{{ menu.menu.nom }}</h6>
+	{% for commandeMenu in commandeMenus %}
+		<h6>{{ commandeMenu.menu.nom }}</h6>
 		<ul>
-		{% for plat in menu.plats %}
-			<li>{{ plat.nom }}</li>
+		{% for plat in commandeMenu.plats %}
+			<li>{{ plat.nom }} {{ plat.prix }}€</li>
 		{% endfor %}
 		</ul>
 	{% endfor %}
@@ -27,17 +27,14 @@
 	{{ form_end(form2) }}
 
 	{{ form_start(form, {'attr': {'class': 'form-control'}}) }}
+		{{ form_label(form.plats, null, {'attr': {'class': 'form-label'}}) }}
+		{{ form_widget(form.plats, {'attr': {'class': 'form-control'}}) }}
+
 		{{ form_label(form.prenom, null, {'attr': {'class': 'form-label'}}) }}
 		{{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
 
 		{{ form_label(form.nom, null, {'attr': {'class': 'form-label'}}) }}
 		{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
-
-		{{ form_label(form.prix, null, {'attr': {'class': 'form-label'}}) }}
-		{{ form_widget(form.prix, {'attr': {'class': 'form-control'}}) }}
-
-		{{ form_label(form.plats, null, {'attr': {'class': 'form-label'}}) }}
-		{{ form_widget(form.plats, {'attr': {'class': 'form-control'}}) }}
 				
 		<button type='submit' class='btn btn-success'>{{ 'commande.enregistrer'|trans }}</button>
 	{{ form_end(form) }}

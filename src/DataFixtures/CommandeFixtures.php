@@ -12,22 +12,23 @@ class CommandeFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-		$commandeMenu = new CommandeMenu();
-		$commandeMenu->setMenu($this->getReference('menu_ours'));
-		$commandeMenu->addPlat($this->getReference('foie_gras_poele'));
-		$commandeMenu->addPlat($this->getReference('tartiflette'));
-		$commandeMenu->addPlat($this->getReference('tarte_aux_myrtilles'));
-
 		$commande = new Commande();
 		$commande->setCode('ABCDEF');
 		$commande->setPrenom('François');
 		$commande->setNom('Basset');
 		$commande->setPrix(25.62);
 		$commande->setEtat('commandé');
-		
-		$commande->addCommandeMenu($commandeMenu);
-		$commande->addPlat($this->getReference('limonade'));
+		$commande->setPlats(['nom' => 'Limonade', 'prix' => 2]);
 
+		$commandeMenu = new CommandeMenu();
+		$commandeMenu->setMenu(['nom' => 'Menu de l\'ourse', 'prix' => 20.80]);
+		$commandeMenu->setPlats([
+			['nom' => 'Salade de chèvre chaud', 'prix' => 13],
+			['nom' => 'Pâtes carbonara', 'prix' => 15],
+			['nom' => 'Glace à la myrtille', 'prix' => 12]
+		]);
+		$commande->addCommandeMenu($commandeMenu);
+		
 		$manager->persist($commandeMenu);
 		$manager->persist($commande);
 

@@ -34,22 +34,31 @@ class CommanderController extends AbstractController
 		$menus = $menuRepository->findAll();
 		$commandeMenus = $sessionInterface->get('commandeMenus');
 
-		$commande = new Commande();
-		$commande->setEtat('commandé');
-		$commande->setCode($generationCodeCommande->generate());
-		$form = $this->createForm(CommandeType::class, $commande);
+		$form = $this->createForm(CommandeType::class, null);
 
-		$commandeMenu = new CommandeMenu();
-		$form2 = $this->createForm(CommandeMenuType::class, $commandeMenu);
+		$form2 = $this->createForm(CommandeMenuType::class, null);
 
 		$form->handleRequest($request);
 		$form2->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {
+			$commande = new Commande();
+			$commande->setPrenom($form->get('prenom')->getData());
+			$commande->setNom($form->get('nom')->getData());
+			$commande->setEtat('commandé');
+			$commande->setCode($generationCodeCommande->generate());
+
+			$prix = 0;
 			foreach ($commandeMenus as $commandeMenu) {
+				$prix += $commandeMenu->getMenu()['prix'];
+				
 				$manager->persist($commandeMenu);
 				$commande->addCommandeMenu($commandeMenu);
 			}
+			foreach ($form->get('plats')->getData() as $plat) {
+				$prix += $plat->getPrix();
+			}
+			$commande->setPrix($prix);
 
 			$manager->persist($commande);
 			$manager->flush();
@@ -73,13 +82,29 @@ class CommanderController extends AbstractController
 		}
 
 		if ($form2->isSubmitted() && $form2->isValid()) {
+			$menu = $form2->get('menu')->getData();
+			$plats = [];
+
+			foreach ($form2->get('plats')->getData() as $plat) {
+				array_push($plats, [
+					'nom' => $plat->getNom(),
+					'prix' => $plat->getPrix()
+				]);
+			}
+
+			$commandeMenu = new CommandeMenu();
+			$commandeMenu->setMenu([
+				'nom' => $menu->getNom(),
+				'prix' => $menu->getPrix()
+			]);
+			$commandeMenu->setPlats($plats);
+			
 			array_push($commandeMenus, $commandeMenu);
 			$sessionInterface->set('commandeMenus', $commandeMenus);
 		}
 
         return $this->render('commander/index.html.twig', [
 			'menus' => $menus,
-			'commande' => $commande,
 			'form' => $form->createView(),
 			'form2' => $form2->createView(),
 			'commandeMenus' => $commandeMenus

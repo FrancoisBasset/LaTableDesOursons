@@ -45,18 +45,17 @@ class Commande
     private $etat;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Plat::class, fetch="EAGER")
-     */
-    private $plats;
-
-    /**
      * @ORM\OneToMany(targetEntity=CommandeMenu::class, mappedBy="commande")
      */
     private $commandeMenus;
 
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $plats = [];
+
     public function __construct()
     {
-        $this->plats = new ArrayCollection();
         $this->commandeMenus = new ArrayCollection();
     }
 
@@ -126,30 +125,6 @@ class Commande
     }
 
     /**
-     * @return Collection|Plat[]
-     */
-    public function getPlats(): Collection
-    {
-        return $this->plats;
-    }
-
-    public function addPlat(Plat $plat): self
-    {
-        if (!$this->plats->contains($plat)) {
-            $this->plats[] = $plat;
-        }
-
-        return $this;
-    }
-
-    public function removePlat(Plat $plat): self
-    {
-        $this->plats->removeElement($plat);
-
-        return $this;
-    }
-
-    /**
      * @return Collection|CommandeMenu[]
      */
     public function getCommandeMenus(): Collection
@@ -175,6 +150,18 @@ class Commande
                 $commandeMenu->setCommande(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPlats(): ?array
+    {
+        return $this->plats;
+    }
+
+    public function setPlats(array $plats): self
+    {
+        $this->plats = $plats;
 
         return $this;
     }

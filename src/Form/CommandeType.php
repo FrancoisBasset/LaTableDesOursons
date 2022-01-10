@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Commande;
+use App\Entity\Plat;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -12,17 +14,18 @@ class CommandeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('prenom', null, [
+			->add('plats', EntityType::class, [
+				'label' => 'commande.plats',
+				'class' => Plat::class,
+				'choice_label' => 'nom',
+				'mapped' => false,
+				'multiple' => true
+			])
+			->add('prenom', null, [
 				'label' => 'commande.prenom'
 			])
             ->add('nom', null, [
 				'label' => 'commande.nom'
-			])
-            ->add('prix', null, [
-				'label' => 'commande.prix'
-			])
-            ->add('plats', null, [
-				'label' => 'commande.plats'
 			])
         ;
     }
