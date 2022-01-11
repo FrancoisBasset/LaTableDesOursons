@@ -12,13 +12,13 @@
 			<div class='collapse navbar-collapse' id='navbarSupportedContent'>
 				<ul class='navbar-nav me-auto mb-2 mb-lg-0'>
 					<li class='nav-item'>
-						<a class='nav-link' href='{{ path('restaurant') }}'>Les catégories</a>
+						<a class='nav-link' href='{{ path('admin') }}'>Les catégories</a>
 					</li>
 					<li class='nav-item'>
-						<a class='nav-link' href='{{ path('menus') }}'>Les plats</a>
+						<a class='nav-link' href='{{ path('admin') }}'>Les plats</a>
 					</li>
 					<li class='nav-item'>
-						<a class='nav-link' href='{{ path('commander') }}'>Les menus</a>
+						<a class='nav-link' href='{{ path('admin') }}'>Les menus</a>
 					</li>
 					<li class='nav-item'>
 						<form action='/changeLanguage' method='get'>
@@ -43,6 +43,9 @@
 								</svg>
 							</button>
 						</form>
+					</li>
+					<li class='nav-item'>
+						<a class='nav-link' href='{{ path('admin_logout') }}'>Déconnexion</a>
 					</li>
 				</ul>
 			</div>

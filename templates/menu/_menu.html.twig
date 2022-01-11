@@ -4,7 +4,7 @@
     		<a class='navbar-brand ourson' href='{{ path('accueil') }}'>
 				<img src='{{ asset('img/favicon.png') }}' width='20px'>
 				La Table des Oursons
-				<img class='mirror' src='{{ asset('img/favicon.png') }}' width='20px' onContextMenu='window.location.href="{{ path('admin_login') }}"'>
+				<img id='door_admin' class='mirror' src='{{ asset('img/favicon.png') }}' width='20px'>
 			</a>
     		<button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
       			<span class='navbar-toggler-icon'></span>
@@ -44,8 +44,26 @@
 							</button>
 						</form>
 					</li>
+					{% if (app.user) %}
+						<li class='nav-item'>
+							<a class='nav-link' href='{{ path('admin') }}'>Back-Office</a>
+						</li>
+						<li class='nav-item'>
+							<a class='nav-link' href='{{ path('admin_logout') }}'>Déconnexion</a>
+						</li>
+					{% endif %}
 				</ul>
 			</div>
   		</div>
 	</nav>
+{% endblock %}
+
+{% block javascripts %}
+	<script>
+		const door_admin = document.getElementById('door_admin');
+		door_admin.oncontextmenu = function(e) {
+			e.preventDefault();
+			window.location.href = "{{ path('admin_login') }}";
+		};
+	</script>
 {% endblock %}
