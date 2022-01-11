@@ -6,7 +6,21 @@
 	{% include 'menu/_admin.html.twig' %}
 	<br><br><br><br>
 
-	{{ form_start(form) }}
-		<button>Créer menu</button>
-	{{ form_end(form) }}
+	<div style='text-align: center'>
+		{{ form_start(form) }}
+			{{ form_label(form.nom, null, {'attr': {'class':'form-label'}}) }}
+			{{ form_widget(form.nom, {'attr': {'class':'form-control'}}) }}
+			<br>
+
+			{{ form_label(form.prix, null, {'attr': {'class':'form-label'}}) }}
+			{{ form_widget(form.prix, {'attr': {'class':'form-control'}}) }}
+			<br>
+
+			{{ form_label(form.categories, null, {'attr': {'class':'form-label'}}) }}
+			{{ form_widget(form.categories, {'attr': {'class':'form-control'}}) }}
+			<br>
+
+			<button class='btn btn-success'>Créer le menu</button>
+		{{ form_end(form) }}
+	</div>
 {% endblock %}
