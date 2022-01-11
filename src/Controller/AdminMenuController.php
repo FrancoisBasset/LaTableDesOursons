@@ -2,33 +2,37 @@
 
 namespace App\Controller;
 
-use App\Entity\Plat;
-use App\Form\AdminPlatType;
+use App\Entity\Menu;
+use App\Form\AdminMenuType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AdminPlatController extends AbstractController
+class AdminMenuController extends AbstractController
 {
 	/**
-	 * @Route("/admin/plat/nouveau", name="admin_plat_nouveau")
+	 * @Route("/admin/menu", name="admin_menu_nouveau")
 	 */
     public function nouveau(Request $request, EntityManagerInterface $manager): Response
     {
-		$plat = new Plat();
-		$form = $this->createForm(AdminPlatType::class, $plat);
+		$menu = new Menu();
+		$form = $this->createForm(AdminMenuType::class, $menu);
 		$form->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {
-			$manager->persist($plat);
-			$manager->flush();
-			$plat = new Plat();
-			$form = $this->createForm(AdminPlatType::class, $plat);
-		}
+			foreach ($form->get('categories')->getData() as $category) {
+				$menu->addCategory($category);
+			}
 
-        return $this->render('admin_plat/nouveau.html.twig', [
+			$manager->persist($menu);
+			$manager->flush();
+			$menu = new Menu();
+			$form = $this->createForm(AdminMenuType::class, $menu);
+		}
+        
+		return $this->render('admin_menu/nouveau.html.twig', [
             'form' => $form->createView()
         ]);
     }

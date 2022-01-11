@@ -24,6 +24,8 @@ class AdminCategorieController extends AbstractController
 		if ($form->isSubmitted() && $form->isValid()) {
 			$manager->persist($categorie);
 			$manager->flush();
+			$categorie = new CategoriePlat();
+			$form = $this->createForm(AdminCategorieType::class, $categorie);
 		}
 
         return $this->render('admin_categorie/nouveau.html.twig', [
