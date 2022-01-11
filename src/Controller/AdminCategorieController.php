@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\CategoriePlat;
-use App\Form\CategorieType;
+use App\Form\AdminCategorieType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +18,7 @@ class AdminCategorieController extends AbstractController
     public function nouveau(Request $request, EntityManagerInterface $manager): Response
     {
 		$categorie = new CategoriePlat();
-		$form = $this->createForm(CategorieType::class, $categorie);
+		$form = $this->createForm(AdminCategorieType::class, $categorie);
 		$form->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {
