@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un plat{% endblock %}
+
+{% block body %}
+	{% include 'menu/_admin.html.twig' %}
+	<br><br><br><br>
+
+	{{ form_start(form) }}
+		{{ form_label(form.nom) }}
+		{{ form_widget(form.nom) }}
+		<br>
+
+		{{ form_label(form.prix) }}
+		{{ form_widget(form.prix) }}
+		<br>
+
+		{{ form_label(form.image) }}
+		{{ form_widget(form.image) }}
+		<br>
+
+		{{ form_label(form.categoriePlats) }}
+		{{ form_widget(form.categoriePlats) }}
+		<br>
+		
+		<button>Créer plat</button>
+	{{ form_end(form) }}
+{% endblock %}
