@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une catégorie{% endblock %}
+
+{% block body %}
+	{% include 'menu/_admin.html.twig' %}
+	<br><br><br><br>
+
+	{{ form_start(form) }}
+		{{ form_label(form.nom) }}
+		{{ form_widget(form.nom) }}
+
+		{{ form_label(form.plats) }}
+		{{ form_widget(form.plats) }}
+
+		<button>Créer catégorie</button>
+	{{ form_end(form) }}
+{% endblock %}
