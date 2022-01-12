@@ -1,28 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title 'Liste des catégories' %}
+{% block title %}Liste des plats{% endblock %}
 
 {% block body %}
 	{% include 'menu/_admin.html.twig' %}
 	<br><br><br><br>
 
 	<div style='text-align: center'>
-		<h5>Liste des catégories</h5>
+		<h5>Liste des plats</h5>
 		<table style='text-align: center; width: 100%'>
 			<thead>
 				<tr>
 					<td>Id</td>
 					<td>Nom</td>
-					<td>Plats</td>
+					<td>Prix</td>
+					<td>Image</td>
 				</tr>
 			</thead>
 			<tbody>
-				{% for categorie in categories %}
+				{% for plat in plats %}
 					<tr>
-						<td>{{ categorie.id }}</td>
-						<td>{{ categorie.nom }}</td>
-						
-						<td>{{ categorie.plats|join(', ') }}</td>
+						<td>{{ plat.id }}</td>
+						<td>{{ plat.nom }}</td>
+						<td>{{ plat.prix }}</td>
+						<td><img src='{{ asset('img/' ~ plat.image ~ '.jpg') }}' height='150px'></td>
 					</tr>
 				{% endfor %}
 			</tbody>
