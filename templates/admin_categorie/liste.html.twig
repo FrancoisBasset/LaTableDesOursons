@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Liste des catégories' %}
+
+{% block body %}
+	{% include 'menu/_admin.html.twig' %}
+	<br><br><br><br>
+
+	<h5>Liste des catégories</h5>
+
+	<table>
+		<thead>
+			<tr>
+				<td>Id</td>
+				<td>Nom</td>
+				<td>Plats</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for categorie in categories %}
+				<tr>
+					<td>{{ categorie.id }}</td>
+					<td>{{ categorie.nom }}</td>
+					
+					<td>{{ categorie.plats|join(', ') }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
