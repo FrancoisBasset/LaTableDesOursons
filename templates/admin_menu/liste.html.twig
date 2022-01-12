@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des menus{% endblock %}
+
+{% block body %}
+	{% include 'menu/_admin.html.twig' %}
+	<br><br><br><br>
+
+	<div style='text-align: center'>
+		<h5>Liste des menus</h5>
+
+		<table style='text-align: center; width: 100%'>
+			<thead>
+				<tr>
+					<td>Id</td>
+					<td>Nom</td>
+					<td>Prix</td>
+					<td>Catégories</td>
+				</tr>
+			</thead>
+			<tbody>
+				{% for menu in menus %}
+					<tr>
+						<td>{{ menu.id }}</td>
+						<td>{{ menu.nom }}</td>
+						<td>{{ menu.prix }}</td>
+						<td>
+							<table>
+								{% for categorie in menu.categories %}
+									<tr><td>{{ categorie }}</td></tr>
+								{% endfor %}
+							</table>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

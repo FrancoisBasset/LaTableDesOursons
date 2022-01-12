@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Menu;
 use App\Form\AdminMenuType;
+use App\Repository\MenuRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,6 +13,18 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminMenuController extends AbstractController
 {
+	/**
+	 * @Route("/admin/menu/liste", name="admin_menu_liste")
+	 */
+	public function liste(MenuRepository $menuRepository): Response
+	{
+		$menus = $menuRepository->findAll();
+
+		return $this->render('admin_menu/liste.html.twig', [
+			'menus' => $menus
+		]);
+	}
+
 	/**
 	 * @Route("/admin/menu", name="admin_menu_nouveau")
 	 */
