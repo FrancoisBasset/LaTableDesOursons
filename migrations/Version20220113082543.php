@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220110203329 extends AbstractMigration
+final class Version20220113082543 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -27,6 +27,7 @@ final class Version20220110203329 extends AbstractMigration
         $this->addSql('CREATE TABLE commande_menu (id INT AUTO_INCREMENT NOT NULL, commande_id INT NOT NULL, menu JSON NOT NULL, plats LONGTEXT NOT NULL COMMENT \'(DC2Type:array)\', INDEX IDX_16693B7082EA2E54 (commande_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE menu (id INT AUTO_INCREMENT NOT NULL, nom VARCHAR(255) NOT NULL, prix DOUBLE PRECISION NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE plat (id INT AUTO_INCREMENT NOT NULL, nom VARCHAR(255) NOT NULL, prix DOUBLE PRECISION NOT NULL, image VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE texte (id INT AUTO_INCREMENT NOT NULL, position INT NOT NULL, texte_fr LONGTEXT NOT NULL, texte_en LONGTEXT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE categorie_plat ADD CONSTRAINT FK_57112550CCD7E912 FOREIGN KEY (menu_id) REFERENCES menu (id)');
         $this->addSql('ALTER TABLE categorie_plat_plat ADD CONSTRAINT FK_3AFC400F88BE1BC2 FOREIGN KEY (categorie_plat_id) REFERENCES categorie_plat (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE categorie_plat_plat ADD CONSTRAINT FK_3AFC400FD73DB560 FOREIGN KEY (plat_id) REFERENCES plat (id) ON DELETE CASCADE');
@@ -47,5 +48,6 @@ final class Version20220110203329 extends AbstractMigration
         $this->addSql('DROP TABLE commande_menu');
         $this->addSql('DROP TABLE menu');
         $this->addSql('DROP TABLE plat');
+        $this->addSql('DROP TABLE texte');
     }
 }

@@ -6,36 +6,21 @@
 	{% include 'menu/_menu.html.twig' %}
 	<br><br><br><br>
 
-	<div>
-	    <p class='.container-sm text-center'>
-			<img src='{{ asset('img/favicon.png') }}' width='20px'>
-			{{ 'menu.restaurant'|trans }} <span class='ourson'>La Table des Oursons</span> {{ 'restaurant.p1'|trans }}
-			<img class='mirror' src='{{ asset('img/favicon.png') }}' width='20px'>
-		</p>
-	</div>
-
-	<div>
-		<p class='.container-sm text-center'>
-			<img src='{{ asset('img/favicon.png') }}' width='20px'>
-			{{ 'restaurant.p2'|trans }}
-			<img class='mirror' src='{{ asset('img/favicon.png') }}' width='20px'>
-		</p>
-	</div>
-
-	<div>
-		<p class='.container-sm text-center'>
-			<img src='{{ asset('img/favicon.png') }}' width='20px'>
-			{{ 'restaurant.p3'|trans }}
-			<img class='mirror' src='{{ asset('img/favicon.png') }}' width='20px'>
-		</p>
-	</div>
-
-	<div>
-		<p class='.container-sm text-center'>
-			<img src='{{ asset('img/favicon.png') }}' width='20px'>
-			{{ 'restaurant.p4'|trans }}
-			<img class='mirror' src='{{ asset('img/favicon.png') }}' width='20px'>
-		</p>
-	</div>
+	{% for texte in textes %}
+		<div>
+			<p class='.container-sm text-center'>
+				{% set textes = texte.texteFr|split('¤') %}
+				{% for texte in textes %}
+					{% if texte == '<ourson>' %}
+						<img src='{{ asset('img/favicon.png') }}' width='20px'>
+					{% elseif texte == '<ourson_mirror>' %}
+						<img class='mirror' src='{{ asset('img/favicon.png') }}' width='20px'>
+					{% else %}
+						{{ texte }}
+					{% endif %}
+				{% endfor %}
+			</p>
+		</div>
+	{% endfor %}
 
 {% endblock %}
