@@ -4,11 +4,12 @@ namespace App\Entity;
 
 use App\Repository\TexteRepository;
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 /**
  * @ORM\Entity(repositoryClass=TexteRepository::class)
  */
-class Texte
+class Texte implements JsonSerializable
 {
     /**
      * @ORM\Id
@@ -72,4 +73,14 @@ class Texte
 
         return $this;
     }
+
+	public function jsonSerialize(): mixed
+	{
+		return [
+			'id' => $this->id,
+			'position' => $this->position,
+			'texte_fr' => $this->texte_fr,
+			'texte_en' => $this->texte_en,
+		];
+	}
 }

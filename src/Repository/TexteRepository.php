@@ -19,6 +19,11 @@ class TexteRepository extends ServiceEntityRepository
         parent::__construct($registry, Texte::class);
     }
 
+	public function findAll()
+	{
+		return $this->findBy([], ['position' => 'ASC']);
+	}
+
     // /**
     //  * @return Texte[] Returns an array of Texte objects
     //  */

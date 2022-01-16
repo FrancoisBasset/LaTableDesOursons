@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier la présentation{% endblock %}
+
+{% block body %}
+	{% include 'menu/_admin.html.twig' %}
+	<br><br><br><br>
+
+	{{ form_start(form) }}
+		{{ form_label(form.texte_fr, 'Texte français', {'attr': {'class': 'form-label'}}) }}
+		{{ form_widget(form.texte_fr, {'attr': {'class': 'form-control'}}) }}
+		<br>
+
+		{{ form_label(form.texte_en, 'Texte anglais', {'attr': {'class': 'form-label'}}) }}
+		{{ form_widget(form.texte_en, {'attr': {'class': 'form-control'}}) }}
+		<br>
+
+		<button class='btn btn-success'>Créer le texte</button>
+	{{ form_end(form) }}
+
+	{{ form_start(form2) }}
+		{{ form_widget(form2.up, {'attr': {'class': 'form-control'}}) }}
+		{{ form_widget(form2.down, {'attr': {'class': 'form-control'}}) }}
+	{{ form_end(form2) }}
+
+	{% set i = 0 %}
+	{% for texte in textes %}
+		<div id='texte-{{ i }}' class='texte' style='margin: 20px; border: 2px solid black; user-select: none; padding: 20px; border-radius: 10px'>
+			{{ texte.texteFr }}
+		</div>
+		{% set i = i + 1 %}
+	{% endfor %}
+
+	<script>
+		Array.from(document.getElementsByClassName('texte')).forEach(function(texte) {
+			texte.addEventListener('click', function(e) {
+				Array.from(document.getElementsByClassName('texte')).forEach(function(texte) {
+					texte.style.color = 'black';
+					texte.style.backgroundColor = 'white',
+					texte.style.borderColor = 'black';
+				});
+				e.target.style.color = 'white';
+				e.target.style.backgroundColor = 'green';
+				e.target.style.borderColor = 'green';
+				document.getElementById('form_position').value = parseInt(e.target.id.split('-')[1]);
+			});
+		});
+	</script>
+{% endblock %}
