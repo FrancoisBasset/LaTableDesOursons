@@ -23,6 +23,7 @@ class AdminTexteController extends AbstractController
 		$textes = $texteRepository->findAll();
 
 		$texte = new Texte();
+		$position = null;
 		$form = $this->createForm(AdminTexteType::class, $texte);
 		$form->handleRequest($request);
 
@@ -62,6 +63,7 @@ class AdminTexteController extends AbstractController
 					}
 					$manager->persist($texte);
 				}
+				$position--;
 			} else if ($form2->get('down')->isClicked() && $position != count($textes) - 1) {
 				foreach ($textes as $texte) {
 					if ($texte->getPosition() == $position) {
@@ -71,6 +73,7 @@ class AdminTexteController extends AbstractController
 					}
 					$manager->persist($texte);
 				}
+				$position++;
 			} else if ($form2->get('remove')->isClicked()) {
 				$texte = $texteRepository->findOneBy([
 					'position' => $position
@@ -96,7 +99,8 @@ class AdminTexteController extends AbstractController
         return $this->render('admin_texte/index.html.twig', [
             'form' => $form->createView(),
 			'form2' => $form2->createView(),
-			'textes' => $textes
+			'textes' => $textes,
+			'position' => $position
         ]);
     }
 }

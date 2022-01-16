@@ -33,6 +33,14 @@
 	{% endfor %}
 
 	<script>
+		const position = '{{ position }}';
+		if (position != '') {
+			document.getElementById('form_position').value = parseInt(position);
+			document.getElementById('texte-' + position).style.color = 'white';
+			document.getElementById('texte-' + position).style.backgroundColor = 'green';
+			document.getElementById('texte-' + position).style.borderColor = 'green';
+		}
+
 		Array.from(document.getElementsByClassName('texte')).forEach(function(texte) {
 			texte.addEventListener('click', function(e) {
 				Array.from(document.getElementsByClassName('texte')).forEach(function(texte) {
