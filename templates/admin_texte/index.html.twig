@@ -19,8 +19,9 @@
 	{{ form_end(form) }}
 
 	{{ form_start(form2) }}
-		{{ form_widget(form2.up, {'attr': {'class': 'form-control'}}) }}
-		{{ form_widget(form2.down, {'attr': {'class': 'form-control'}}) }}
+		{{ form_widget(form2.up, {'attr': {'class': 'form-control btn btn-success'}}) }}
+		{{ form_widget(form2.down, {'attr': {'class': 'form-control btn btn-info'}}) }}
+		{{ form_widget(form2.remove, {'attr': {'class': 'form-control btn btn-danger'}}) }}
 	{{ form_end(form2) }}
 
 	{% set i = 0 %}

@@ -34,19 +34,26 @@ class AdminTexteController extends AbstractController
 			->add('down', SubmitType::class, [
 				'label' => 'Down'
 			])
+			->add('remove', SubmitType::class, [
+				'label' => 'Supprimer'
+			])
 			->getForm();
 		$form2->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {
+			$texte->setPosition(count($textes));
 			$manager->persist($texte);
 			$manager->flush();
 			$textes = $texteRepository->findAll();
+
+			$texte = new Texte();
+			$form = $this->createForm(AdminTexteType::class, $texte);
 		}
 
 		if ($form2->isSubmitted() && $form2->isValid()) {
 			$position = intval($form2->get('position')->getData());
 
-			if ($form2->get('up')->isClicked()) {
+			if ($form2->get('up')->isClicked() && $position != 0) {
 				foreach ($textes as $texte) {
 					if ($texte->getPosition() == $position) {
 						$texte->setPosition($position - 1);
@@ -55,7 +62,7 @@ class AdminTexteController extends AbstractController
 					}
 					$manager->persist($texte);
 				}
-			} else if ($form2->get('down')->isClicked()) {
+			} else if ($form2->get('down')->isClicked() && $position != count($textes) - 1) {
 				foreach ($textes as $texte) {
 					if ($texte->getPosition() == $position) {
 						$texte->setPosition($position + 1);
@@ -63,6 +70,21 @@ class AdminTexteController extends AbstractController
 						$texte->setPosition($position);
 					}
 					$manager->persist($texte);
+				}
+			} else if ($form2->get('remove')->isClicked()) {
+				$texte = $texteRepository->findOneBy([
+					'position' => $position
+				]);
+				$manager->remove($texte);
+				$manager->flush();
+
+				$textesOrder = $texteRepository->findAll();
+				$i = 0;
+				foreach ($textesOrder as $texte) {
+					$texte->setPosition($i);
+					$manager->persist($texte);
+					
+					$i++;
 				}
 			}
 			
