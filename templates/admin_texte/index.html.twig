@@ -16,13 +16,13 @@
 		<br>
 
 		{{ form_widget(form.creer_texte, {'attr': {'class': 'btn btn-success'}}) }}
-		{{ form_widget(form.modifier_texte, {'attr': {'class': 'btn btn-info'}}) }}
+		{{ form_widget(form.modifier_texte, {'attr': {'class': 'btn btn-info', 'style':'display:none'}}) }}
 	{{ form_end(form) }}
 
 	{{ form_start(form2) }}
-		{{ form_widget(form2.up, {'attr': {'class': 'form-control btn btn-success'}}) }}
-		{{ form_widget(form2.down, {'attr': {'class': 'form-control btn btn-info'}}) }}
-		{{ form_widget(form2.remove, {'attr': {'class': 'form-control btn btn-danger'}}) }}
+		{{ form_widget(form2.up, {'attr': {'class': 'form-control btn btn-success', 'style':'display:none'}}) }}
+		{{ form_widget(form2.down, {'attr': {'class': 'form-control btn btn-info', 'style':'display:none'}}) }}
+		{{ form_widget(form2.remove, {'attr': {'class': 'form-control btn btn-danger', 'style':'display:none'}}) }}
 	{{ form_end(form2) }}
 
 	{% set i = 0 %}
@@ -50,6 +50,11 @@
 			document.getElementById('admin_texte_id').value = textes[position].id;
 			admin_texte_texte_fr.value = textes[position].texte_fr;
 			admin_texte_texte_en.value = textes[position].texte_en;
+
+			document.getElementById('admin_texte_modifier_texte').style.display = '';
+			document.getElementById('form_up').style.display = '';
+			document.getElementById('form_down').style.display = '';
+			document.getElementById('form_remove').style.display = '';
 		}
 
 		Array.from(document.getElementsByClassName('texte')).forEach(function(texte) {
@@ -68,6 +73,11 @@
 				document.getElementById('admin_texte_id').value = textes[parseInt(e.target.id.split('-')[1])].id;
 				admin_texte_texte_fr.value = textes[parseInt(e.target.id.split('-')[1])].texte_fr;
 				admin_texte_texte_en.value = textes[parseInt(e.target.id.split('-')[1])].texte_en;
+
+				document.getElementById('admin_texte_modifier_texte').style.display = '';
+				document.getElementById('form_up').style.display = '';
+				document.getElementById('form_down').style.display = '';
+				document.getElementById('form_remove').style.display = '';
 			});
 		});
 	</script>
