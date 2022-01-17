@@ -22,9 +22,8 @@ class AdminTexteController extends AbstractController
     {
 		$textes = $texteRepository->findAll();
 
-		$texte = new Texte();
 		$position = null;
-		$form = $this->createForm(AdminTexteType::class, $texte);
+		$form = $this->createForm(AdminTexteType::class);
 		$form->handleRequest($request);
 
 		$form2 = $this->createFormBuilder()
@@ -42,10 +41,20 @@ class AdminTexteController extends AbstractController
 		$form2->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {
-			$texte->setPosition(count($textes));
+			if ($form->get('creer_texte')->isClicked()) {
+				$texte = new Texte();
+				$texte->setPosition(count($textes));
+			} else if ($form->get('modifier_texte')->isClicked()) {
+				$texte = $texteRepository->find($form->get('id')->getData());
+			}
+			
+			$texte->setTexteFr($form->get('texte_fr')->getData());
+			$texte->setTexteEn($form->get('texte_en')->getData());
 			$manager->persist($texte);
 			$manager->flush();
 			$textes = $texteRepository->findAll();
+
+			$position = intval($form->get('position')->getData());
 
 			$texte = new Texte();
 			$form = $this->createForm(AdminTexteType::class, $texte);
@@ -89,6 +98,7 @@ class AdminTexteController extends AbstractController
 					
 					$i++;
 				}
+				$position = null;
 			}
 			
 			$manager->flush();

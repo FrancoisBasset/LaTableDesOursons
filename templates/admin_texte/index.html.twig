@@ -15,7 +15,8 @@
 		{{ form_widget(form.texte_en, {'attr': {'class': 'form-control'}}) }}
 		<br>
 
-		<button class='btn btn-success'>Créer le texte</button>
+		{{ form_widget(form.creer_texte, {'attr': {'class': 'btn btn-success'}}) }}
+		{{ form_widget(form.modifier_texte, {'attr': {'class': 'btn btn-info'}}) }}
 	{{ form_end(form) }}
 
 	{{ form_start(form2) }}
@@ -33,12 +34,22 @@
 	{% endfor %}
 
 	<script>
+		const textes = {{ textes|json_encode|raw }};
+
+		const admin_texte_texte_fr = document.getElementById('admin_texte_texte_fr');
+		const admin_texte_texte_en = document.getElementById('admin_texte_texte_en');
+
 		const position = '{{ position }}';
 		if (position != '') {
 			document.getElementById('form_position').value = parseInt(position);
+			document.getElementById('admin_texte_position').value = parseInt(position);
 			document.getElementById('texte-' + position).style.color = 'white';
 			document.getElementById('texte-' + position).style.backgroundColor = 'green';
 			document.getElementById('texte-' + position).style.borderColor = 'green';
+
+			document.getElementById('admin_texte_id').value = textes[position].id;
+			admin_texte_texte_fr.value = textes[position].texte_fr;
+			admin_texte_texte_en.value = textes[position].texte_en;
 		}
 
 		Array.from(document.getElementsByClassName('texte')).forEach(function(texte) {
@@ -52,6 +63,11 @@
 				e.target.style.backgroundColor = 'green';
 				e.target.style.borderColor = 'green';
 				document.getElementById('form_position').value = parseInt(e.target.id.split('-')[1]);
+				document.getElementById('admin_texte_position').value = parseInt(e.target.id.split('-')[1]);
+
+				document.getElementById('admin_texte_id').value = textes[parseInt(e.target.id.split('-')[1])].id;
+				admin_texte_texte_fr.value = textes[parseInt(e.target.id.split('-')[1])].texte_fr;
+				admin_texte_texte_en.value = textes[parseInt(e.target.id.split('-')[1])].texte_en;
 			});
 		});
 	</script>

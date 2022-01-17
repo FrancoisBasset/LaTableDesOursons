@@ -4,6 +4,9 @@ namespace App\Form;
 
 use App\Entity\Texte;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,8 +15,24 @@ class AdminTexteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('texte_fr')
-            ->add('texte_en')
+			->add('id', HiddenType::class, [
+				'mapped' => false
+			])
+			->add('position', HiddenType::class, [
+				'mapped' => false
+			])
+            ->add('texte_fr', TextareaType::class, [
+				'mapped' => false
+			])
+            ->add('texte_en', TextareaType::class, [
+				'mapped' => false
+			])
+			->add('creer_texte', SubmitType::class, [
+				'label' => 'Créer le texte'
+			])
+			->add('modifier_texte', SubmitType::class, [
+				'label' => 'Modifier le texte'
+			])
         ;
     }
 
