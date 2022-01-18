@@ -3,12 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Texte;
+use App\Form\AdminTexteSelectType;
 use App\Form\AdminTexteType;
 use App\Repository\TexteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,18 +25,7 @@ class AdminTexteController extends AbstractController
 		$form = $this->createForm(AdminTexteType::class);
 		$form->handleRequest($request);
 
-		$form2 = $this->createFormBuilder()
-			->add('position', HiddenType::class)
-			->add('up', SubmitType::class, [
-				'label' => 'Up'
-			])
-			->add('down', SubmitType::class, [
-				'label' => 'Down'
-			])
-			->add('remove', SubmitType::class, [
-				'label' => 'Supprimer'
-			])
-			->getForm();
+		$form2 = $this->createForm(AdminTexteSelectType::class);
 		$form2->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {

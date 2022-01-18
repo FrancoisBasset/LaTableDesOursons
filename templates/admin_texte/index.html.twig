@@ -20,9 +20,9 @@
 	{{ form_end(form) }}
 
 	{{ form_start(form2) }}
-		{{ form_widget(form2.up, {'attr': {'class': 'form-control btn btn-success', 'style':'display:none'}}) }}
-		{{ form_widget(form2.down, {'attr': {'class': 'form-control btn btn-info', 'style':'display:none'}}) }}
-		{{ form_widget(form2.remove, {'attr': {'class': 'form-control btn btn-danger', 'style':'display:none'}}) }}
+		{{ form_widget(form2.up, {'label': 'Up', 'attr': {'class': 'form-control btn btn-success', 'style':'display:none'}}) }}
+		{{ form_widget(form2.down, {'label': 'Down', 'attr': {'class': 'form-control btn btn-info', 'style':'display:none'}}) }}
+		{{ form_widget(form2.remove, {'label': 'Supprimer', 'attr': {'class': 'form-control btn btn-danger', 'style':'display:none'}}) }}
 	{{ form_end(form2) }}
 
 	{% set i = 0 %}
@@ -41,7 +41,7 @@
 
 		const position = '{{ position }}';
 		if (position != '') {
-			document.getElementById('form_position').value = parseInt(position);
+			document.getElementById('admin_texte_select_position').value = parseInt(position);
 			document.getElementById('admin_texte_position').value = parseInt(position);
 			document.getElementById('texte-' + position).style.color = 'white';
 			document.getElementById('texte-' + position).style.backgroundColor = 'green';
@@ -52,9 +52,9 @@
 			admin_texte_texte_en.value = textes[position].texte_en;
 
 			document.getElementById('admin_texte_modifier_texte').style.display = '';
-			document.getElementById('form_up').style.display = '';
-			document.getElementById('form_down').style.display = '';
-			document.getElementById('form_remove').style.display = '';
+			document.getElementById('admin_texte_select_up').style.display = '';
+			document.getElementById('admin_texte_select_down').style.display = '';
+			document.getElementById('admin_texte_select_remove').style.display = '';
 		}
 
 		Array.from(document.getElementsByClassName('texte')).forEach(function(texte) {
@@ -67,7 +67,7 @@
 				e.target.style.color = 'white';
 				e.target.style.backgroundColor = 'green';
 				e.target.style.borderColor = 'green';
-				document.getElementById('form_position').value = parseInt(e.target.id.split('-')[1]);
+				document.getElementById('admin_texte_select_position').value = parseInt(e.target.id.split('-')[1]);
 				document.getElementById('admin_texte_position').value = parseInt(e.target.id.split('-')[1]);
 
 				document.getElementById('admin_texte_id').value = textes[parseInt(e.target.id.split('-')[1])].id;
@@ -75,9 +75,9 @@
 				admin_texte_texte_en.value = textes[parseInt(e.target.id.split('-')[1])].texte_en;
 
 				document.getElementById('admin_texte_modifier_texte').style.display = '';
-				document.getElementById('form_up').style.display = '';
-				document.getElementById('form_down').style.display = '';
-				document.getElementById('form_remove').style.display = '';
+				document.getElementById('admin_texte_select_up').style.display = '';
+				document.getElementById('admin_texte_select_down').style.display = '';
+				document.getElementById('admin_texte_select_remove').style.display = '';
 			});
 		});
 	</script>
