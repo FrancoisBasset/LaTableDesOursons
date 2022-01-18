@@ -15,8 +15,8 @@
 		{{ form_widget(form.texte_en, {'attr': {'class': 'form-control'}}) }}
 		<br>
 
-		{{ form_widget(form.creer_texte, {'attr': {'class': 'btn btn-success'}}) }}
-		{{ form_widget(form.modifier_texte, {'attr': {'class': 'btn btn-info', 'style':'display:none'}}) }}
+		{{ form_widget(form.creer_texte, {'label': 'Créer le texte', 'attr': {'class': 'btn btn-success'}}) }}
+		{{ form_widget(form.modifier_texte, {'label': 'Modifier le texte', 'attr': {'class': 'btn btn-info', 'style':'display:none'}}) }}
 	{{ form_end(form) }}
 
 	{{ form_start(form2) }}

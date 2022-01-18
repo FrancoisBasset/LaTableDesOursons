@@ -27,12 +27,8 @@ class AdminTexteType extends AbstractType
             ->add('texte_en', TextareaType::class, [
 				'mapped' => false
 			])
-			->add('creer_texte', SubmitType::class, [
-				'label' => 'Créer le texte'
-			])
-			->add('modifier_texte', SubmitType::class, [
-				'label' => 'Modifier le texte'
-			])
+			->add('creer_texte', SubmitType::class)
+			->add('modifier_texte', SubmitType::class)
         ;
     }
 
