@@ -6,7 +6,7 @@
 	{% include 'menu/_menu.html.twig' %}
 	<br><br><br><br>
 
-	Menus
+	{{ 'menu.menus'|trans }}
 	{% for commandeMenu in commandeMenus %}
 		<h6>{{ commandeMenu.menu.nom }}</h6>
 		<ul>
@@ -36,7 +36,7 @@
 		{{ form_label(form.nom, 'commande.nom', {'attr': {'class': 'form-label'}}) }}
 		{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
 				
-		<button type='submit' class='btn btn-success'>{{ 'commande.enregistrer'|trans }}</button>
+		<button type='submit' class='btn btn-success'>{{ 'commande.commander'|trans }}</button>
 	{{ form_end(form) }}
 		
 	{#{% for menu in menus %}
