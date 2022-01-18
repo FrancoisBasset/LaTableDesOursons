@@ -22,7 +22,6 @@ class CommandeMenuType extends AbstractType
 				'mapped' => false
 			])
 			->add('plats', EntityType::class, [
-				'label' => 'commande.plats',
 				'class' => Plat::class,
 				'choice_label' => 'nom',
 				'mapped' => false,

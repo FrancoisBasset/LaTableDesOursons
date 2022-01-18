@@ -11,7 +11,8 @@ commande:
     prenom: Prénom
     nom: Nom
     prix: Prix
-    plats: Plats
+    menu: Le menu
+    plats: Les plats
     ajouterMenu: Ajouter un menu
     enregistrer: Enregistrer
 qrcode:

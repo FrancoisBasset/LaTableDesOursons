@@ -15,18 +15,13 @@ class CommandeType extends AbstractType
     {
         $builder
 			->add('plats', EntityType::class, [
-				'label' => 'commande.plats',
 				'class' => Plat::class,
 				'choice_label' => 'nom',
 				'mapped' => false,
 				'multiple' => true
 			])
-			->add('prenom', null, [
-				'label' => 'commande.prenom'
-			])
-            ->add('nom', null, [
-				'label' => 'commande.nom'
-			])
+			->add('prenom')
+            ->add('nom')
         ;
     }
 

@@ -17,23 +17,23 @@
 	{% endfor %}
 
 	{{ form_start(form2, {'attr': {'class': 'form-control'}}) }}
-		{{ form_label(form2.menu,  null, {'attr': {'class': 'form-label'}}) }}
+		{{ form_label(form2.menu, 'commande.menu', {'attr': {'class': 'form-label'}}) }}
 		{{ form_widget(form2.menu, {'attr': {'class': 'form-control'}}) }}
 
-		{{ form_label(form2.plats,  null, {'attr': {'class': 'form-label'}}) }}
+		{{ form_label(form2.plats, 'commande.plats', {'attr': {'class': 'form-label'}}) }}
 		{{ form_widget(form2.plats, {'attr': {'class': 'form-control'}}) }}
 
 		<button>{{ 'commande.ajouterMenu'|trans }}</button>
 	{{ form_end(form2) }}
 
 	{{ form_start(form, {'attr': {'class': 'form-control'}}) }}
-		{{ form_label(form.plats, null, {'attr': {'class': 'form-label'}}) }}
+		{{ form_label(form.plats, 'commande.plats', {'attr': {'class': 'form-label'}}) }}
 		{{ form_widget(form.plats, {'attr': {'class': 'form-control'}}) }}
 
-		{{ form_label(form.prenom, null, {'attr': {'class': 'form-label'}}) }}
+		{{ form_label(form.prenom, 'commande.prenom', {'attr': {'class': 'form-label'}}) }}
 		{{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
 
-		{{ form_label(form.nom, null, {'attr': {'class': 'form-label'}}) }}
+		{{ form_label(form.nom, 'commande.nom', {'attr': {'class': 'form-label'}}) }}
 		{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
 				
 		<button type='submit' class='btn btn-success'>{{ 'commande.enregistrer'|trans }}</button>
