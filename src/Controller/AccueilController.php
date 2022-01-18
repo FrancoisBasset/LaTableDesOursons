@@ -26,6 +26,6 @@ class AccueilController extends AbstractController
 
 		$request->getSession()->set('_locale', $lang);
 
-		return $this->redirectToRoute('accueil');
+		return $this->redirect($request->headers->get('referer'));
 	}
 }
