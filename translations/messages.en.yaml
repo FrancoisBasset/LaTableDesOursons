@@ -6,6 +6,7 @@ menu_bar:
 commande:
     prenom: Your firstname :
     nom: Your lastname :
+    menus: Menus
     menu: Choose the menu :
     plats: Choose the dishes :
     ajouter_menu: Add this menu

@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}La Table des Oursons - Commander{% endblock %}
+{% block title %}La Table des Oursons - {{ 'menu_bar.commander'|trans }}{% endblock %}
 
 {% block body %}
 	{% include 'menu/_menu.html.twig' %}
 	<br><br><br><br>
 
-	{{ 'menu.menus'|trans }}
+	{{ 'commande.menus'|trans }}
 	{% for commandeMenu in commandeMenus %}
 		<h6>{{ commandeMenu.menu.nom }}</h6>
 		<ul>

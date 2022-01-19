@@ -6,6 +6,7 @@ menu_bar:
 commande:
     prenom: Votre prénom :
     nom: Votre nom :
+    menus: Les menus
     menu: Choisissez le menu :
     plats: Choisissez les plats :
     ajouter_menu: Ajouter ce menu
