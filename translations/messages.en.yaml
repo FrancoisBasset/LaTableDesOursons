@@ -32,15 +32,15 @@ admin:
         creer_un_menu: Create a menu
         changer_le_mot_de_passe: Change password
         modifier_la_presentation: Change introduction
-    liste_des_categories:
+    categories:
         liste_des_categories: List of categories
         nom: Name
         plats: Dishes
-    liste_des_plats:
+    plats:
         liste_des_plats: List of dishes
         nom: Name
         prix: Price
-    liste_des_menus:
+    menus:
         liste_des_menus: List of menus
         nom: Name
         prix: Price

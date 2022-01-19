@@ -1,19 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ 'admin.liste_des_plats.liste_des_plats'|trans }}{% endblock %}
+{% block title %}{{ 'admin.plats.liste_des_plats'|trans }}{% endblock %}
 
 {% block body %}
 	{% include 'menu/_admin.html.twig' %}
 	<br><br><br><br>
 
 	<div style='text-align: center'>
-		<h5>{{ 'admin.liste_des_plats.liste_des_plats'|trans }}</h5>
+		<h5>{{ 'admin.plats.liste_des_plats'|trans }}</h5>
 		<table style='text-align: center; width: 100%'>
 			<thead>
 				<tr>
 					<td><b>Id</b></td>
-					<td><b>{{ 'admin.liste_des_plats.nom'|trans }}</b></td>
-					<td><b>{{ 'admin.liste_des_plats.prix'|trans }}</b></td>
+					<td><b>{{ 'admin.plats.nom'|trans }}</b></td>
+					<td><b>{{ 'admin.plats.prix'|trans }}</b></td>
 					<td><b>Image</b></td>
 				</tr>
 			</thead>
