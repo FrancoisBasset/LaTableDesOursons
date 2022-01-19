@@ -19,15 +19,24 @@ login:
     mot_de_passe: Mot de passe :
     se_connecter: Se connecter
 
-admin_menu_bar:
-    site_du_restaurant: Site du restaurant
-    les_categories: Les catégories
-    les_plats: Les plats
-    les_menus: Les menus
-    deconnexion: Déconnexion
-admin_index:
-    creer_une_categorie: Créer une catégorie
-    creer_un_plat: Créer un plat
-    creer_un_menu: Créer un menu
-    changer_le_mot_de_passe: Changer le mot de passe
-    modifier_la_presentation: Modifier la présentation
+admin:
+    menu_bar:
+        site_du_restaurant: Site du restaurant
+        les_categories: Les catégories
+        les_plats: Les plats
+        les_menus: Les menus
+        deconnexion: Déconnexion
+    index:
+        creer_une_categorie: Créer une catégorie
+        creer_un_plat: Créer un plat
+        creer_un_menu: Créer un menu
+        changer_le_mot_de_passe: Changer le mot de passe
+        modifier_la_presentation: Modifier la présentation
+    liste_des_categories:
+        liste_des_categories: Liste des catégories
+        nom: Nom
+        plats: Plats
+    liste_des_plats:
+        liste_des_plats: Liste des plats
+        nom: Nom
+        prix: Prix

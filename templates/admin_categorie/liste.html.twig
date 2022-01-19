@@ -1,19 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title 'Liste des catégories' %}
+{% block title %}{{ 'admin.liste_des_categories.liste_des_categories'|trans }}{% endblock %}
 
 {% block body %}
 	{% include 'menu/_admin.html.twig' %}
 	<br><br><br><br>
 
 	<div style='text-align: center'>
-		<h5>Liste des catégories</h5>
+		<h5>{{ 'admin.liste_des_categories.liste_des_categories'|trans }}</h5>
 		<table style='text-align: center; width: 100%'>
 			<thead>
 				<tr>
-					<td>Id</td>
-					<td>Nom</td>
-					<td>Plats</td>
+					<td><b>Id</b></td>
+					<td><b>{{ 'admin.liste_des_categories.nom'|trans }}</b></td>
+					<td><b>{{ 'admin.liste_des_categories.plats'|trans }}</b></td>
 				</tr>
 			</thead>
 			<tbody>
