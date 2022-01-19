@@ -2,6 +2,7 @@ menu_bar:
     restaurant: Le restaurant
     menus: Les menus
     commander: Commander
+    deconnexion: Déconnexion
 commande:
     prenom: Votre prénom :
     nom: Votre nom :
@@ -17,3 +18,10 @@ login:
     nom_utilisateur: Nom d'utilisateur :
     mot_de_passe: Mot de passe :
     se_connecter: Se connecter
+
+admin_menu_bar:
+    site_du_restaurant: Site du restaurant
+    les_categories: Les catégories
+    les_plats: Les plats
+    les_menus: Les menus
+    deconnexion: Déconnexion

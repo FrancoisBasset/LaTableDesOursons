@@ -2,6 +2,7 @@ menu_bar:
     restaurant: The restaurant
     menus: Menus
     commander: Order
+    deconnexion: Logout
 commande:
     prenom: Your firstname :
     nom: Your lastname :
@@ -17,3 +18,10 @@ login:
     nom_utilisateur: Username :
     mot_de_passe: Password :
     se_connecter: Login
+
+admin_menu_bar:
+    site_du_restaurant: Restaurant website
+    les_categories: Categories
+    les_plats: Dishes
+    les_menus: Menus
+    deconnexion: Logout

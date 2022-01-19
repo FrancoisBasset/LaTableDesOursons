@@ -12,16 +12,16 @@
 			<div class='collapse navbar-collapse' id='navbarSupportedContent'>
 				<ul class='navbar-nav me-auto mb-2 mb-lg-0'>
 					<li class='nav-item'>
-						<a class='nav-link' href='{{ path('accueil') }}'><b>Site du restaurant</b></a>
+						<a class='nav-link' href='{{ path('accueil') }}'><b>{{ 'admin_menu_bar.site_du_restaurant'|trans }}</b></a>
 					</li>
 					<li class='nav-item'>
-						<a class='nav-link' href='{{ path('admin_categorie_liste') }}'>Les catégories</a>
+						<a class='nav-link' href='{{ path('admin_categorie_liste') }}'>{{ 'admin_menu_bar.les_categories'|trans }}</a>
 					</li>
 					<li class='nav-item'>
-						<a class='nav-link' href='{{ path('admin_plat_liste') }}'>Les plats</a>
+						<a class='nav-link' href='{{ path('admin_plat_liste') }}'>{{ 'admin_menu_bar.les_plats'|trans }}</a>
 					</li>
 					<li class='nav-item'>
-						<a class='nav-link' href='{{ path('admin_menu_liste') }}'>Les menus</a>
+						<a class='nav-link' href='{{ path('admin_menu_liste') }}'>{{ 'admin_menu_bar.les_menus'|trans }}</a>
 					</li>
 					<li class='nav-item'>
 						<form action='/changeLanguage' method='get'>
@@ -48,7 +48,7 @@
 						</form>
 					</li>
 					<li class='nav-item'>
-						<a class='nav-link' href='{{ path('admin_logout') }}'>Déconnexion</a>
+						<a class='nav-link' href='{{ path('admin_logout') }}'>{{ 'admin_menu_bar.deconnexion'|trans }}</a>
 					</li>
 				</ul>
 			</div>
