@@ -40,3 +40,8 @@ admin:
         liste_des_plats: Liste des plats
         nom: Nom
         prix: Prix
+    liste_des_menus:
+        liste_des_menus: Liste des menus
+        nom: Nom
+        prix: Prix
+        categories: Catégories

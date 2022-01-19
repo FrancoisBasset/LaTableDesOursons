@@ -40,3 +40,8 @@ admin:
         liste_des_plats: List of dishes
         nom: Name
         prix: Price
+    liste_des_menus:
+        liste_des_menus: List of menus
+        nom: Name
+        prix: Price
+        categories: Categories
