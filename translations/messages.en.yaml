@@ -25,3 +25,9 @@ admin_menu_bar:
     les_plats: Dishes
     les_menus: Menus
     deconnexion: Logout
+admin_index:
+    creer_une_categorie: Create a category
+    creer_un_plat: Create a dish
+    creer_un_menu: Create a menu
+    changer_le_mot_de_passe: Change password
+    modifier_la_presentation: Change introduction
