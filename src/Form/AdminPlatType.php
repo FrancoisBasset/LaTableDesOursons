@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Plat;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,7 +15,9 @@ class AdminPlatType extends AbstractType
         $builder
             ->add('nom')
             ->add('prix')
-            ->add('image')
+            ->add('image', FileType::class, [
+				'mapped' => false
+			])
             ->add('categoriePlats')
         ;
     }

@@ -35,6 +35,14 @@ class AdminPlatController extends AbstractController
 		$form->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {
+			$image = $form->get('image')->getData();
+
+			$nom = strtolower($form->get('nom')->getData());
+			$nom = join('_', explode(' ', $nom)).'.jpg';
+			$image->move('img', $nom);
+
+			$plat->setImage($nom);
+
 			$manager->persist($plat);
 			$manager->flush();
 			$plat = new Plat();
