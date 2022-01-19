@@ -27,8 +27,10 @@ admin:
         les_menus: Menus
         deconnexion: Logout
     index:
-        changer_le_mot_de_passe: Change password
+        modifier_le_mot_de_passe: Change password
         modifier_la_presentation: Change introduction
+        mot_de_passe: Password :
+        confirmation_mot_de_passe: Confirm password :
     categories:
         creer_une_categorie: Create a category
         liste_des_categories: List of categories
