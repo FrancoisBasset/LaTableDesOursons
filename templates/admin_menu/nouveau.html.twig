@@ -1,28 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Créer un menu{% endblock %}
+{% block title %}{{ 'admin.menus.creer_un_menu'|trans }}{% endblock %}
 
 {% block body %}
 	{% include 'menu/_admin.html.twig' %}
 	<br><br><br><br>
 
 	<div style='text-align: center'>
-		<h5>Créer un menu</h5>
+		<h5>{{ 'admin.menus.creer_un_menu'|trans }}</h5>
 
 		{{ form_start(form) }}
-			{{ form_label(form.nom, null, {'attr': {'class':'form-label'}}) }}
+			{{ form_label(form.nom, 'admin.menus.nom', {'attr': {'class':'form-label'}}) }}
 			{{ form_widget(form.nom, {'attr': {'class':'form-control'}}) }}
 			<br>
 
-			{{ form_label(form.prix, null, {'attr': {'class':'form-label'}}) }}
+			{{ form_label(form.prix, 'admin.menus.prix', {'attr': {'class':'form-label'}}) }}
 			{{ form_widget(form.prix, {'attr': {'class':'form-control'}}) }}
 			<br>
 
-			{{ form_label(form.categories, null, {'attr': {'class':'form-label'}}) }}
+			{{ form_label(form.categories, 'admin.menus.categories', {'attr': {'class':'form-label'}}) }}
 			{{ form_widget(form.categories, {'attr': {'class':'form-control'}}) }}
 			<br>
 
-			<button class='btn btn-success'>Créer le menu</button>
+			<button class='btn btn-success'>{{ 'admin.menus.creer_le_menu'|trans }}</button>
 		{{ form_end(form) }}
 	</div>
 {% endblock %}

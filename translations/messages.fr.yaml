@@ -34,14 +34,18 @@ admin:
         liste_des_categories: Liste des catégories
         nom: Nom
         plats: Plats
+        creer_la_categorie: Créer la catégorie
     plats:
         creer_un_plat: Créer un plat
         liste_des_plats: Liste des plats
         nom: Nom
         prix: Prix
+        categories_de_plats: Catégories de plats
+        creer_le_plat: Créer le plat
     menus:
         creer_un_menu: Créer un menu
         liste_des_menus: Liste des menus
         nom: Nom
         prix: Prix
         categories: Catégories
+        creer_le_menu: Créer le menu

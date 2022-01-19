@@ -34,14 +34,18 @@ admin:
         liste_des_categories: List of categories
         nom: Name
         plats: Dishes
+        creer_la_categorie: Create the category
     plats:
         creer_un_plat: Create a dish
         liste_des_plats: List of dishes
         nom: Name
         prix: Price
+        categories_de_plats: Dishes categories
+        creer_le_plat: Create the dish
     menus:
         creer_un_menu: Create a menu
         liste_des_menus: List of menus
         nom: Name
         prix: Price
         categories: Categories
+        creer_le_menu: Create the menu

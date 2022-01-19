@@ -1,24 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Créer une catégorie{% endblock %}
+{% block title %}{{ 'admin.categories.creer_une_categorie'|trans }}{% endblock %}
 
 {% block body %}
 	{% include 'menu/_admin.html.twig' %}
 	<br><br><br><br>
 
 	<div style='text-align: center'>
-		<h5>Créer une catégorie</h5>
+		<h5>{{ 'admin.categories.creer_une_categorie'|trans }}</h5>
 
 		{{ form_start(form) }}
-			{{ form_label(form.nom, null, {'attr': {'class':'form-label'}}) }}
+			{{ form_label(form.nom, 'admin.categories.nom', {'attr': {'class':'form-label'}}) }}
 			{{ form_widget(form.nom, {'attr': {'class':'form-control'}}) }}
 			<br>
 
-			{{ form_label(form.plats, null, {'attr': {'class':'form-label'}}) }}
+			{{ form_label(form.plats, 'admin.categories.plats', {'attr': {'class':'form-label'}}) }}
 			{{ form_widget(form.plats, {'attr': {'class':'form-control'}}) }}
 			<br>
 			
-			<button class='btn btn-success'>Créer la catégorie</button>
+			<button class='btn btn-success'>{{ 'admin.categories.creer_la_categorie'|trans }}</button>
 		{{ form_end(form) }}
 	</div>
 {% endblock %}

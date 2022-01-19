@@ -1,32 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Créer un plat{% endblock %}
+{% block title %}{{ 'admin.plats.creer_un_plat'|trans }}{% endblock %}
 
 {% block body %}
 	{% include 'menu/_admin.html.twig' %}
 	<br><br><br><br>
 
 	<div style='text-align: center'>
-		<h5>Créer un plat</h5>
+		<h5>{{ 'admin.plats.creer_un_plat'|trans }}</h5>
 
 		{{ form_start(form) }}
-			{{ form_label(form.nom, null, {'attr': {'class':'form-label'}}) }}
+			{{ form_label(form.nom, 'admin.plats.nom', {'attr': {'class':'form-label'}}) }}
 			{{ form_widget(form.nom, {'attr': {'class':'form-control'}}) }}
 			<br>
 
-			{{ form_label(form.prix, null, {'attr': {'class':'form-label'}}) }}
+			{{ form_label(form.prix, 'admin.plats.prix', {'attr': {'class':'form-label'}}) }}
 			{{ form_widget(form.prix, {'attr': {'class':'form-control'}}) }}
 			<br>
 
-			{{ form_label(form.image, null, {'attr': {'class':'form-label'}}) }}
+			{{ form_label(form.image, 'Image', {'attr': {'class':'form-label'}}) }}
 			{{ form_widget(form.image, {'attr': {'class':'form-control'}}) }}
 			<br>
 
-			{{ form_label(form.categoriePlats, null, {'attr': {'class':'form-label'}}) }}
+			{{ form_label(form.categoriePlats, 'admin.plats.categories_de_plats', {'attr': {'class':'form-label'}}) }}
 			{{ form_widget(form.categoriePlats, {'attr': {'class':'form-control'}}) }}
 			<br>
 			
-			<button class='btn btn-success'>Créer le plat</button>
+			<button class='btn btn-success'>{{ 'admin.plats.creer_le_plat'|trans }}</button>
 		{{ form_end(form) }}
 	</div>
 {% endblock %}
