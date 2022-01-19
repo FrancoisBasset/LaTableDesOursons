@@ -23,7 +23,7 @@
 						<td>{{ plat.id }}</td>
 						<td>{{ plat.nom }}</td>
 						<td>{{ plat.prix }}</td>
-						<td><img src='{{ asset('img/' ~ plat.image ~ '.jpg') }}' height='150px'></td>
+						<td><img src='{{ asset('img/' ~ plat.image) }}' height='150px'></td>
 					</tr>
 				{% endfor %}
 			</tbody>
