@@ -27,20 +27,20 @@ admin:
         les_menus: Les menus
         deconnexion: Déconnexion
     index:
-        creer_une_categorie: Créer une catégorie
-        creer_un_plat: Créer un plat
-        creer_un_menu: Créer un menu
         changer_le_mot_de_passe: Changer le mot de passe
         modifier_la_presentation: Modifier la présentation
     categories:
+        creer_une_categorie: Créer une catégorie
         liste_des_categories: Liste des catégories
         nom: Nom
         plats: Plats
     plats:
+        creer_un_plat: Créer un plat
         liste_des_plats: Liste des plats
         nom: Nom
         prix: Prix
     menus:
+        creer_un_menu: Créer un menu
         liste_des_menus: Liste des menus
         nom: Nom
         prix: Prix
