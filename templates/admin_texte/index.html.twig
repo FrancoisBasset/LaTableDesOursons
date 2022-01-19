@@ -1,28 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier la présentation{% endblock %}
+{% block title 'admin.index.modifier_la_presentation'|trans %}
 
 {% block body %}
 	{% include 'menu/_admin.html.twig' %}
 	<br><br><br><br>
 
+	<h5>{{ 'admin.index.modifier_la_presentation'|trans }}</h5>
+
 	{{ form_start(form) }}
-		{{ form_label(form.texte_fr, 'Texte français', {'attr': {'class': 'form-label'}}) }}
+		{{ form_label(form.texte_fr, 'admin.texte.texte_en_francais', {'attr': {'class': 'form-label'}}) }}
 		{{ form_widget(form.texte_fr, {'attr': {'class': 'form-control'}}) }}
 		<br>
 
-		{{ form_label(form.texte_en, 'Texte anglais', {'attr': {'class': 'form-label'}}) }}
+		{{ form_label(form.texte_en, 'admin.texte.texte_en_anglais', {'attr': {'class': 'form-label'}}) }}
 		{{ form_widget(form.texte_en, {'attr': {'class': 'form-control'}}) }}
 		<br>
 
-		{{ form_widget(form.creer_texte, {'label': 'Créer le texte', 'attr': {'class': 'btn btn-success'}}) }}
-		{{ form_widget(form.modifier_texte, {'label': 'Modifier le texte', 'attr': {'class': 'btn btn-info', 'style':'display:none'}}) }}
+		{{ form_widget(form.creer_texte, {'label': 'admin.texte.creer_le_texte', 'attr': {'class': 'btn btn-success'}}) }}
+		{{ form_widget(form.modifier_texte, {'label': 'admin.texte.modifier_le_texte', 'attr': {'class': 'btn btn-info', 'style':'display:none'}}) }}
 	{{ form_end(form) }}
 
 	{{ form_start(form2) }}
-		{{ form_widget(form2.up, {'label': 'Up', 'attr': {'class': 'form-control btn btn-success', 'style':'display:none'}}) }}
-		{{ form_widget(form2.down, {'label': 'Down', 'attr': {'class': 'form-control btn btn-info', 'style':'display:none'}}) }}
-		{{ form_widget(form2.remove, {'label': 'Supprimer', 'attr': {'class': 'form-control btn btn-danger', 'style':'display:none'}}) }}
+		{{ form_widget(form2.up, {'label': 'admin.texte.haut', 'attr': {'class': 'form-control btn btn-success', 'style':'display:none'}}) }}
+		{{ form_widget(form2.down, {'label': 'admin.texte.bas', 'attr': {'class': 'form-control btn btn-info', 'style':'display:none'}}) }}
+		{{ form_widget(form2.remove, {'label': 'admin.texte.supprimer', 'attr': {'class': 'form-control btn btn-danger', 'style':'display:none'}}) }}
 	{{ form_end(form2) }}
 
 	{% set i = 0 %}

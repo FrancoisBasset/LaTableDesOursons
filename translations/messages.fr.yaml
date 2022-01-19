@@ -52,3 +52,11 @@ admin:
         prix: Prix
         categories: Catégories
         creer_le_menu: Créer le menu
+    texte:
+        texte_en_francais: Texte en français :
+        texte_en_anglais: Texte en anglais :
+        creer_le_texte: Créer le texte
+        modifier_le_texte: Modifier le texte
+        haut: Haut
+        bas: Bas
+        supprimer: Supprimer

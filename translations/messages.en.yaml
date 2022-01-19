@@ -52,3 +52,11 @@ admin:
         prix: Price
         categories: Categories
         creer_le_menu: Create the menu
+    texte:
+        texte_en_francais: Text in french :
+        texte_en_anglais: Text in english :
+        creer_le_texte: Create text
+        modifier_le_texte: Change text
+        haut: Up
+        bas: Down
+        supprimer: Remove
