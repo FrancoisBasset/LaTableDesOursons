@@ -1,4 +1,4 @@
-menu:
+menu_bar:
     restaurant: Le restaurant
     menus: Les menus
     commander: Commander
@@ -7,8 +7,13 @@ commande:
     nom: Votre nom :
     menu: Choisissez le menu :
     plats: Choisissez les plats :
-    ajouterMenu: Ajouter ce menu
+    ajouter_menu: Ajouter ce menu
     commander: Commander
 qrcode:
     consigne: Voici le QR Code à montrer au serveur pour récupérer votre commande
-    retourCommande: Retour à la page commande
+    retour_commande: Retour à la page commande
+login:
+    connexion_administrateur: Connexion administrateur
+    nom_utilisateur: Nom d'utilisateur :
+    mot_de_passe: Mot de passe :
+    se_connecter: Se connecter

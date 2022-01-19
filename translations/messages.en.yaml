@@ -1,4 +1,4 @@
-menu:
+menu_bar:
     restaurant: The restaurant
     menus: Menus
     commander: Order
@@ -7,8 +7,13 @@ commande:
     nom: Your lastname :
     menu: Choose the menu :
     plats: Choose the dishes :
-    ajouterMenu: Add this menu
+    ajouter_menu: Add this menu
     commander: Order
 qrcode:
     consigne: Here is the QR Code to show to the server to get your order
-    retourCommande: Back to the order page
+    retour_commande: Back to the order page
+login:
+    connexion_administrateur: Admin login
+    nom_utilisateur: Username :
+    mot_de_passe: Password :
+    se_connecter: Login

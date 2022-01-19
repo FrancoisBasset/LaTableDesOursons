@@ -7,24 +7,15 @@
 {% include 'menu/_menu.html.twig' %}
 <br><br><br><br>
 
-{% if app.user %}
-	<div class="mb-3">
-		Vous êtes connecté avec {{ app.user.username }} <a href="{{ path('admin_logout') }}"><button class="btn btn-danger">Logout</button></a>
-	</div>
-	<div class="mb-3">
-		<a href="{{ path('admin') }}"><button class="btn btn-success">Aller dans le Back-Office</button></a>
-	</div>
-{% endif %}
-
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Connexion administrateur</h1>
-    <label for="inputUsername">Nom d'utilisateur</label>
+    <h1 class="h3 mb-3 font-weight-normal">{{ 'login.connexion_administrateur'|trans }}</h1>
+    <label for="inputUsername">{{ 'login.nom_utilisateur'|trans }}</label>
     <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
-    <label for="inputPassword">Mot de passe</label>
+    <label for="inputPassword">{{ 'login.mot_de_passe'|trans }}</label>
     <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
@@ -40,6 +31,6 @@
         </div>
     #}
 
-    <button class="btn btn-lg btn-success" type="submit">Se connecter</button>
+    <button class="btn btn-lg btn-success" type="submit">{{ 'login.se_connecter'|trans }}</button>
 </form>
 {% endblock %}
