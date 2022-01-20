@@ -88,7 +88,8 @@ class CommanderController extends AbstractController
 			foreach ($form2->get('plats')->getData() as $plat) {
 				array_push($plats, [
 					'nom' => $plat->getNom(),
-					'prix' => $plat->getPrix()
+					'prix' => $plat->getPrix(),
+					'image' => $plat->getImage()
 				]);
 			}
 

@@ -6,39 +6,44 @@
 	{% include 'menu/_menu.html.twig' %}
 	<br><br><br><br>
 
-	{{ 'commande.menus'|trans }}
-	{% for commandeMenu in commandeMenus %}
-		<h6>{{ commandeMenu.menu.nom }}</h6>
-		<ul>
-		{% for plat in commandeMenu.plats %}
-			<li>{{ plat.nom }} {{ plat.prix }}€</li>
+	<div style='width: 20%; float: left; scroll: hidden'>
+		{{ 'commande.menus'|trans }}
+		{% for commandeMenu in commandeMenus %}
+			<h6>{{ commandeMenu.menu.nom }}</h6>
+			<ul>
+			{% for plat in commandeMenu.plats %}
+				<label>{{ plat.nom }} {{ plat.prix }}€</label>
+				<img src='{{ asset('img/'~plat.image) }}' height='90'>
+			{% endfor %}
+			</ul>
 		{% endfor %}
-		</ul>
-	{% endfor %}
+	</div>
 
-	{{ form_start(form2, {'attr': {'class': 'form-control'}}) }}
-		{{ form_label(form2.menu, 'commande.menu', {'attr': {'class': 'form-label'}}) }}
-		{{ form_widget(form2.menu, {'attr': {'class': 'form-control'}}) }}
+	<div style='width: 80%; float: right'>
+		{{ form_start(form2, {'attr': {'class': 'form-control'}}) }}
+			{{ form_label(form2.menu, 'commande.menu', {'attr': {'class': 'form-label'}}) }}
+			{{ form_widget(form2.menu, {'attr': {'class': 'form-control'}}) }}
 
-		{{ form_label(form2.plats, 'commande.plats', {'attr': {'class': 'form-label'}}) }}
-		{{ form_widget(form2.plats, {'attr': {'class': 'form-control'}}) }}
+			{{ form_label(form2.plats, 'commande.plats', {'attr': {'class': 'form-label'}}) }}
+			{{ form_widget(form2.plats, {'attr': {'class': 'form-control'}}) }}
 
-		<button class='btn btn-success'>{{ 'commande.ajouter_menu'|trans }}</button>
-	{{ form_end(form2) }}
+			<button class='btn btn-success'>{{ 'commande.ajouter_menu'|trans }}</button>
+		{{ form_end(form2) }}
 
-	{{ form_start(form, {'attr': {'class': 'form-control'}}) }}
-		{{ form_label(form.plats, 'commande.plats', {'attr': {'class': 'form-label'}}) }}
-		{{ form_widget(form.plats, {'attr': {'class': 'form-control'}}) }}
+		{{ form_start(form, {'attr': {'class': 'form-control'}}) }}
+			{{ form_label(form.plats, 'commande.plats', {'attr': {'class': 'form-label'}}) }}
+			{{ form_widget(form.plats, {'attr': {'class': 'form-control'}}) }}
 
-		{{ form_label(form.prenom, 'commande.prenom', {'attr': {'class': 'form-label'}}) }}
-		{{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+			{{ form_label(form.prenom, 'commande.prenom', {'attr': {'class': 'form-label'}}) }}
+			{{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
 
-		{{ form_label(form.nom, 'commande.nom', {'attr': {'class': 'form-label'}}) }}
-		{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+			{{ form_label(form.nom, 'commande.nom', {'attr': {'class': 'form-label'}}) }}
+			{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
 				
-		<button type='submit' class='btn btn-success'>{{ 'commande.commander'|trans }}</button>
-	{{ form_end(form) }}
-		
+			<button type='submit' class='btn btn-success'>{{ 'commande.commander'|trans }}</button>
+		{{ form_end(form) }}
+	</div>
+
 	{#{% for menu in menus %}
 		{% for categorie in menu.categories %}
 			{% for plat in categorie.plats %}
