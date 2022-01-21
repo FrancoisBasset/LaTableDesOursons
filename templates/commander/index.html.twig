@@ -6,9 +6,8 @@
 	{% include 'menu/_menu.html.twig' %}
 	<br><br><br><br>
 
-	<div style='width: 20%; float: left; overflow-y: scroll; max-height: 80%'>
-		<h1>Votre commande :</h1>
-		<h2>{{ 'commande.menus'|trans }}</h2>
+	<div style='width: 30%; float: left; overflow-y: scroll; max-height: 80%'>
+		<h1>{{ 'commande.vos_menus_commandes'|trans }}</h1>
 		{% for commandeMenu in commandeMenus %}
 			<h4>{{ commandeMenu.menu.nom }}, {{ commandeMenu.menu.prix }}€</h4>
 			<table>
@@ -23,8 +22,8 @@
 	</div>
 	<h2>Total : <span id='total'>{{ total_menus }}</span>€</h2>
 
-	<div style='width: 80%; float: right'>
-		<h5>Choisissez le menu :</h5>
+	<div style='width: 30%; float: right'>
+		<h5>{{ 'commande.choisissez_le_menu'|trans }}</h5>
 		<div>
 			{% for menu in menus %}
 				<button id='menu-{{ menu.id }}' class='menu btn' onclick="selectMenu(this)" style='border-radius: 10px'>{{ menu.nom }}</button>
@@ -35,13 +34,15 @@
 		<br>
 		
 		{{ form_start(form2) }}
-			<button class='btn btn-success'>{{ 'commande.ajouter_menu'|trans }}</button>
+			<button class='btn btn-success'>{{ 'commande.ajouter_ce_menu'|trans }}</button>
 		{{ form_end(form2) }}
+	</div>
 
-		<br>
+	<div style='width: 40%; float: right'>
+		<h5>{{ 'commande.choisissez_des_plats_supplementaires'|trans }}</h5>
 
 		{% for plat in plats %}
-			<img title='{{ plat.nom }}' id='p-{{ plat.id }}' onclick="selectPlat(this)" src='/img/{{ plat.image }}' width="100" height="100" style="border-radius: 10px; padding: 5px">
+			<img title='{{ plat.nom }} {{ plat.prix }}€' id='p-{{ plat.id }}' onclick="selectPlat(this)" src='/img/{{ plat.image }}' width="100" height="100" style="border-radius: 10px; padding: 5px">
 		{% endfor %}
 
 		{{ form_start(form) }}
@@ -74,7 +75,7 @@
 
 			menu = menus.find(m => m.id == menu_id);
 			
-			document.getElementById('categories').innerHTML = '<h5>Choisissez les plats :</h5>';
+			document.getElementById('categories').innerHTML = '<h5>{{ "commande.choisissez_les_plats"|trans }}</h5>';
 			for (const category of menu.categories) {
 				commande_menu_plats['category-'+category.id] = '';
 
