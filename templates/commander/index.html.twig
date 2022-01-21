@@ -6,20 +6,23 @@
 	{% include 'menu/_menu.html.twig' %}
 	<br><br><br><br>
 
-	<div style='width: 20%; float: left; scroll: hidden'>
-		{{ 'commande.menus'|trans }}
+	<div style='width: 20%; float: left; overflow-y: scroll; max-height: 80%'>
+		<h1>{{ 'commande.menus'|trans }}</h1>
+		{% set total = 0 %}
 		{% for commandeMenu in commandeMenus %}
-			<h6>{{ commandeMenu.menu.nom }}, {{ commandeMenu.menu.prix }}€</h6>
+			<h3>{{ commandeMenu.menu.nom }}, {{ commandeMenu.menu.prix }}€</h3>
 			<table>
 			{% for plat in commandeMenu.plats %}
 				<tr>
-					<td><label>{{ plat.nom }}</label></td>
+					<td><b>{{ plat.nom }}</b></td>
 					<td><img src='{{ asset('img/'~plat.image) }}' height='100' width='100'></td>
 				</tr>
 			{% endfor %}
 			</table>
+			{% set total = total + commandeMenu.menu.prix %}
 		{% endfor %}
 	</div>
+	<h2>Total : {{ total }}€</h2>
 
 	<div style='width: 80%; float: right'>
 		<h5>Choisissez le menu :</h5>
@@ -32,7 +35,7 @@
 		<div id='categories'></div>
 		<br>
 		
-		{{ form_start(form2, {'attr': {'class': 'form-control'}}) }}
+		{{ form_start(form2) }}
 			<button class='btn btn-success'>{{ 'commande.ajouter_menu'|trans }}</button>
 		{{ form_end(form2) }}
 
