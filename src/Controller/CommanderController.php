@@ -56,7 +56,7 @@ class CommanderController extends AbstractController
 				$commande->addCommandeMenu($commandeMenu);
 			}
 			$plats = [];
-			foreach (explode(', ', $form->get('plats')->getData()) as $id_plat) {
+			foreach (explode(',', $form->get('plats')->getData()) as $id_plat) {
 				$plat = $platRepository->find($id_plat);
 				array_push($plats, $plat->jsonSerialize());
 				$prix += $plat->getPrix();
