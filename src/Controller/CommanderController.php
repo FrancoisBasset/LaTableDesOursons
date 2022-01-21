@@ -7,6 +7,7 @@ use App\Entity\CommandeMenu;
 use App\Form\CommandeMenuType;
 use App\Form\CommandeType;
 use App\Repository\MenuRepository;
+use App\Repository\PlatRepository;
 use App\Service\GenerationCodeCommande;
 use Doctrine\ORM\EntityManagerInterface;
 use Endroid\QrCode\Builder\Builder;
@@ -26,7 +27,7 @@ class CommanderController extends AbstractController
     /**
 	 * @Route("/commander", name="commander", methods={"GET", "POST"})
 	 */
-    public function index(Request $request, MenuRepository $menuRepository, EntityManagerInterface $manager, GenerationCodeCommande $generationCodeCommande, SessionInterface $sessionInterface): Response
+    public function index(Request $request, MenuRepository $menuRepository, PlatRepository $platRepository, EntityManagerInterface $manager, GenerationCodeCommande $generationCodeCommande, SessionInterface $sessionInterface): Response
     {
 		if (!$sessionInterface->has('commandeMenus')) {
 			$sessionInterface->set('commandeMenus', []);
@@ -82,10 +83,11 @@ class CommanderController extends AbstractController
 		}
 
 		if ($form2->isSubmitted() && $form2->isValid()) {
-			$menu = $form2->get('menu')->getData();
+			$menu = $menuRepository->find($form2->get('menu')->getData());
 			$plats = [];
 
-			foreach ($form2->get('plats')->getData() as $plat) {
+			foreach (explode(',', $form2->get('plats')->getData()) as $id_plat) {
+				$plat = $platRepository->find($id_plat);
 				array_push($plats, [
 					'nom' => $plat->getNom(),
 					'prix' => $plat->getPrix(),

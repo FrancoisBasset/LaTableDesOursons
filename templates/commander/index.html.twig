@@ -9,26 +9,34 @@
 	<div style='width: 20%; float: left; scroll: hidden'>
 		{{ 'commande.menus'|trans }}
 		{% for commandeMenu in commandeMenus %}
-			<h6>{{ commandeMenu.menu.nom }}</h6>
-			<ul>
+			<h6>{{ commandeMenu.menu.nom }}, {{ commandeMenu.menu.prix }}€</h6>
+			<table>
 			{% for plat in commandeMenu.plats %}
-				<label>{{ plat.nom }} {{ plat.prix }}€</label>
-				<img src='{{ asset('img/'~plat.image) }}' height='90'>
+				<tr>
+					<td><label>{{ plat.nom }}</label></td>
+					<td><img src='{{ asset('img/'~plat.image) }}' height='100' width='100'></td>
+				</tr>
 			{% endfor %}
-			</ul>
+			</table>
 		{% endfor %}
 	</div>
 
 	<div style='width: 80%; float: right'>
+		<h5>Choisissez le menu :</h5>
+		<div>
+			{% for menu in menus %}
+				<button id='menu-{{ menu.id }}' class='menu btn' onclick="selectMenu(this)" style='border-radius: 10px'>{{ menu.nom }}</button>
+			{% endfor %}
+		</div>
+
+		<div id='categories'></div>
+		<br>
+		
 		{{ form_start(form2, {'attr': {'class': 'form-control'}}) }}
-			{{ form_label(form2.menu, 'commande.menu', {'attr': {'class': 'form-label'}}) }}
-			{{ form_widget(form2.menu, {'attr': {'class': 'form-control'}}) }}
-
-			{{ form_label(form2.plats, 'commande.plats', {'attr': {'class': 'form-label'}}) }}
-			{{ form_widget(form2.plats, {'attr': {'class': 'form-control'}}) }}
-
 			<button class='btn btn-success'>{{ 'commande.ajouter_menu'|trans }}</button>
 		{{ form_end(form2) }}
+
+		<br>
 
 		{{ form_start(form, {'attr': {'class': 'form-control'}}) }}
 			{{ form_label(form.plats, 'commande.plats', {'attr': {'class': 'form-label'}}) }}
@@ -44,11 +52,45 @@
 		{{ form_end(form) }}
 	</div>
 
-	{#{% for menu in menus %}
-		{% for categorie in menu.categories %}
-			{% for plat in categorie.plats %}
-				<img src='{{ asset('img/' ~ plat.image) }}' width='200px'>
-			{% endfor %}
-		{% endfor %}
-	{% endfor %}#}
+	<script>
+		const menus = {{ menus|json_encode|raw }};
+		let choices = [];
+
+		function selectMenu(menu) {
+			const menu_id = menu.id.split('-')[1];
+			document.getElementById('commande_menu_menu').value = menu_id;
+
+			Array.from(document.getElementsByClassName('menu')).forEach(function(m) {
+				m.style.border = '';
+			});
+			document.getElementById('menu-'+menu_id).style.border = '5px solid green';
+
+			menu = menus.find(m => m.id == menu_id);
+			
+			document.getElementById('categories').innerHTML = '';
+			for (const category of menu.categories) {
+				choices['category-'+category.id] = '';
+
+				document.getElementById('categories').innerHTML += '<div>';
+				document.getElementById('categories').innerHTML += '<div>'+category.nom+'</div>';
+
+				for (const plat of category.plats) {
+					document.getElementById('categories').innerHTML += '<img id="plat-'+plat.id+'" class="category-'+category.id+'" onclick="selectPlat(this)" src="/img/' + plat.image+'" width="100" height="100" style="border-radius: 10px; padding: 5px">';
+				}
+
+				document.getElementById('categories').innerHTML += '</div>';
+			}
+		}
+
+		function selectPlat(plat) {
+			Array.from(document.getElementsByClassName(plat.className)).forEach(function(p) {
+				p.style.border = 'none';
+			});
+			
+			plat.style.border = '5px solid green';
+
+			choices[plat.className] = plat.id.split('-')[1];
+			document.getElementById('commande_menu_plats').value = Object.values(choices);
+		}
+	</script>
 {% endblock %}

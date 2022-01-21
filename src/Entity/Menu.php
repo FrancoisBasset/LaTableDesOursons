@@ -6,11 +6,12 @@ use App\Repository\MenuRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 /**
  * @ORM\Entity(repositoryClass=MenuRepository::class)
  */
-class Menu
+class Menu implements JsonSerializable
 {
     /**
      * @ORM\Id
@@ -101,5 +102,20 @@ class Menu
 	public function __toString()
 	{
 		return $this->nom;
+	}
+
+	public function jsonSerialize(): mixed
+	{
+		$cs = [];
+		foreach ($this->categories as $c) {
+			array_push($cs, $c->jsonSerialize());
+		}
+
+		return [
+			'id' => $this->id,
+			'nom' => $this->nom,
+			'prix' => $this->prix,
+			'categories' => $cs
+		];
 	}
 }

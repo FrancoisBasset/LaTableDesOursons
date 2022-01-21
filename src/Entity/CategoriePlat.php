@@ -6,11 +6,12 @@ use App\Repository\CategoriePlatRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 /**
  * @ORM\Entity(repositoryClass=CategoriePlatRepository::class)
  */
-class CategoriePlat
+class CategoriePlat implements JsonSerializable
 {
     /**
      * @ORM\Id
@@ -95,5 +96,18 @@ class CategoriePlat
 	public function __toString()
 	{
 		return $this->nom;
+	}
+
+	public function jsonSerialize(): mixed
+	{
+		$ps = [];
+		foreach ($this->plats as $p) {
+			array_push($ps, $p->jsonSerialize());
+		}
+		return [
+			'id' => $this->id,
+			'nom' => $this->nom,
+			'plats' => $ps
+		];
 	}
 }
