@@ -100,7 +100,7 @@
 		}
 
 		function selectPlat(plat) {
-			let plat_id = parseInt(plat.id.split('-')[1]);
+			const plat_id = parseInt(plat.id.split('-')[1]);
 
 			if (!commande_plats.includes(plat_id)) {
 				commande_plats.push(plat_id);

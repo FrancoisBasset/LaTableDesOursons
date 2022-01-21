@@ -32,8 +32,6 @@ class CommanderController extends AbstractController
 		if (!$sessionInterface->has('commandeMenus')) {
 			$sessionInterface->set('commandeMenus', []);
 		}
-		$menus = $menuRepository->findAll();
-		$plats = $platRepository->findAll();
 		$commandeMenus = $sessionInterface->get('commandeMenus');
 
 		$form = $this->createForm(CommandeType::class, null);
@@ -42,11 +40,6 @@ class CommanderController extends AbstractController
 
 		$form->handleRequest($request);
 		$form2->handleRequest($request);
-
-		$total_menus = 0;
-		foreach ($commandeMenus as $commandeMenu) {
-			$total_menus += $commandeMenu->getMenu()['prix'];
-		}
 
 		if ($form->isSubmitted() && $form->isValid()) {
 			$commande = new Commande();
@@ -114,17 +107,16 @@ class CommanderController extends AbstractController
 			
 			array_push($commandeMenus, $commandeMenu);
 
-			$total_menus = 0;
-			foreach ($commandeMenus as $commandeMenu) {
-				$total_menus += $commandeMenu->getMenu()['prix'];
-			}
-
 			$sessionInterface->set('commandeMenus', $commandeMenus);
 		}
 
+		$total_menus = array_reduce($commandeMenus, function($total, $commandeMenu) {
+			return $total + $commandeMenu->getMenu()['prix'];
+		}, 0);
+
         return $this->render('commander/index.html.twig', [
-			'menus' => $menus,
-			'plats' => $plats,
+			'menus' => $menuRepository->findAll(),
+			'plats' => $platRepository->findAll(),
 			'form' => $form->createView(),
 			'form2' => $form2->createView(),
 			'commandeMenus' => $commandeMenus,
