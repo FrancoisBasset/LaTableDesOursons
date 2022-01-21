@@ -33,6 +33,7 @@ class CommanderController extends AbstractController
 			$sessionInterface->set('commandeMenus', []);
 		}
 		$menus = $menuRepository->findAll();
+		$plats = $platRepository->findAll();
 		$commandeMenus = $sessionInterface->get('commandeMenus');
 
 		$form = $this->createForm(CommandeType::class, null);
@@ -41,6 +42,11 @@ class CommanderController extends AbstractController
 
 		$form->handleRequest($request);
 		$form2->handleRequest($request);
+
+		$total_menus = 0;
+		foreach ($commandeMenus as $commandeMenu) {
+			$total_menus += $commandeMenu->getMenu()['prix'];
+		}
 
 		if ($form->isSubmitted() && $form->isValid()) {
 			$commande = new Commande();
@@ -56,10 +62,14 @@ class CommanderController extends AbstractController
 				$manager->persist($commandeMenu);
 				$commande->addCommandeMenu($commandeMenu);
 			}
-			foreach ($form->get('plats')->getData() as $plat) {
+			$plats = [];
+			foreach (explode(', ', $form->get('plats')->getData()) as $id_plat) {
+				$plat = $platRepository->find($id_plat);
+				array_push($plats, $plat->jsonSerialize());
 				$prix += $plat->getPrix();
 			}
 			$commande->setPrix($prix);
+			$commande->setPlats($plats);
 
 			$manager->persist($commande);
 			$manager->flush();
@@ -84,11 +94,11 @@ class CommanderController extends AbstractController
 
 		if ($form2->isSubmitted() && $form2->isValid()) {
 			$menu = $menuRepository->find($form2->get('menu')->getData());
-			$plats = [];
+			$plats_menu = [];
 
 			foreach (explode(',', $form2->get('plats')->getData()) as $id_plat) {
 				$plat = $platRepository->find($id_plat);
-				array_push($plats, [
+				array_push($plats_menu, [
 					'nom' => $plat->getNom(),
 					'prix' => $plat->getPrix(),
 					'image' => $plat->getImage()
@@ -100,17 +110,25 @@ class CommanderController extends AbstractController
 				'nom' => $menu->getNom(),
 				'prix' => $menu->getPrix()
 			]);
-			$commandeMenu->setPlats($plats);
+			$commandeMenu->setPlats($plats_menu);
 			
 			array_push($commandeMenus, $commandeMenu);
+
+			$total_menus = 0;
+			foreach ($commandeMenus as $commandeMenu) {
+				$total_menus += $commandeMenu->getMenu()['prix'];
+			}
+
 			$sessionInterface->set('commandeMenus', $commandeMenus);
 		}
 
         return $this->render('commander/index.html.twig', [
 			'menus' => $menus,
+			'plats' => $plats,
 			'form' => $form->createView(),
 			'form2' => $form2->createView(),
-			'commandeMenus' => $commandeMenus
+			'commandeMenus' => $commandeMenus,
+			'total_menus' => $total_menus
 		]);
     }
 }

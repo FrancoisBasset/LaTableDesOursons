@@ -7,10 +7,10 @@
 	<br><br><br><br>
 
 	<div style='width: 20%; float: left; overflow-y: scroll; max-height: 80%'>
-		<h1>{{ 'commande.menus'|trans }}</h1>
-		{% set total = 0 %}
+		<h1>Votre commande :</h1>
+		<h2>{{ 'commande.menus'|trans }}</h2>
 		{% for commandeMenu in commandeMenus %}
-			<h3>{{ commandeMenu.menu.nom }}, {{ commandeMenu.menu.prix }}€</h3>
+			<h4>{{ commandeMenu.menu.nom }}, {{ commandeMenu.menu.prix }}€</h4>
 			<table>
 			{% for plat in commandeMenu.plats %}
 				<tr>
@@ -19,10 +19,9 @@
 				</tr>
 			{% endfor %}
 			</table>
-			{% set total = total + commandeMenu.menu.prix %}
 		{% endfor %}
 	</div>
-	<h2>Total : {{ total }}€</h2>
+	<h2>Total : <span id='total'>{{ total_menus }}</span>€</h2>
 
 	<div style='width: 80%; float: right'>
 		<h5>Choisissez le menu :</h5>
@@ -41,23 +40,28 @@
 
 		<br>
 
-		{{ form_start(form, {'attr': {'class': 'form-control'}}) }}
-			{{ form_label(form.plats, 'commande.plats', {'attr': {'class': 'form-label'}}) }}
-			{{ form_widget(form.plats, {'attr': {'class': 'form-control'}}) }}
+		{% for plat in plats %}
+			<img title='{{ plat.nom }}' id='p-{{ plat.id }}' onclick="selectPlat(this)" src='/img/{{ plat.image }}' width="100" height="100" style="border-radius: 10px; padding: 5px">
+		{% endfor %}
 
+		{{ form_start(form) }}
 			{{ form_label(form.prenom, 'commande.prenom', {'attr': {'class': 'form-label'}}) }}
 			{{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
 
 			{{ form_label(form.nom, 'commande.nom', {'attr': {'class': 'form-label'}}) }}
 			{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
-				
+			<br>
+
 			<button type='submit' class='btn btn-success'>{{ 'commande.commander'|trans }}</button>
 		{{ form_end(form) }}
 	</div>
 
 	<script>
 		const menus = {{ menus|json_encode|raw }};
-		let choices = [];
+		const plats = {{ plats|json_encode|raw }};
+		let commande_menu_plats = [];
+		let commande_plats = [];
+		const total_menus = {{ total_menus }};
 
 		function selectMenu(menu) {
 			const menu_id = menu.id.split('-')[1];
@@ -72,28 +76,48 @@
 			
 			document.getElementById('categories').innerHTML = '<h5>Choisissez les plats :</h5>';
 			for (const category of menu.categories) {
-				choices['category-'+category.id] = '';
+				commande_menu_plats['category-'+category.id] = '';
 
 				document.getElementById('categories').innerHTML += '<div>';
 				document.getElementById('categories').innerHTML += '<div><b>'+category.nom+'</b></div>';
 
 				for (const plat of category.plats) {
-					document.getElementById('categories').innerHTML += '<img title="'+plat.nom+'" id="plat-'+plat.id+'" class="category-'+category.id+'" onclick="selectPlat(this)" src="/img/' + plat.image+'" width="100" height="100" style="border-radius: 10px; padding: 5px">';
+					document.getElementById('categories').innerHTML += '<img title="'+plat.nom+'" id="plat-'+plat.id+'" class="category-'+category.id+'" onclick="selectPlatMenu(this)" src="/img/' + plat.image+'" width="100" height="100" style="border-radius: 10px; padding: 5px">';
 				}
 
 				document.getElementById('categories').innerHTML += '</div>';
 			}
 		}
 
-		function selectPlat(plat) {
+		function selectPlatMenu(plat) {
 			Array.from(document.getElementsByClassName(plat.className)).forEach(function(p) {
 				p.style.border = 'none';
 			});
-			
 			plat.style.border = '5px solid green';
 
-			choices[plat.className] = plat.id.split('-')[1];
-			document.getElementById('commande_menu_plats').value = Object.values(choices);
+			commande_menu_plats[plat.className] = plat.id.split('-')[1];
+			document.getElementById('commande_menu_plats').value = Object.values(commande_menu_plats);
+		}
+
+		function selectPlat(plat) {
+			let plat_id = parseInt(plat.id.split('-')[1]);
+
+			if (!commande_plats.includes(plat_id)) {
+				commande_plats.push(plat_id);
+				plat.style.border = '5px solid green';
+			} else {
+				commande_plats = commande_plats.filter(p => p != plat_id);
+				plat.style.border = '';
+			}
+
+			let total = total_menus;
+			for (const commande_plat of commande_plats) {
+				total += plats.find(p => p.id == commande_plat).prix;
+			}
+			
+			document.getElementById('total').textContent = total;
+
+			document.getElementById('commande_plats').value = Object.values(commande_plats);
 		}
 	</script>
 {% endblock %}
