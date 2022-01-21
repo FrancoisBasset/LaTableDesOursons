@@ -70,12 +70,12 @@
 
 			menu = menus.find(m => m.id == menu_id);
 			
-			document.getElementById('categories').innerHTML = '';
+			document.getElementById('categories').innerHTML = '<h5>Choisissez les plats :</h5>';
 			for (const category of menu.categories) {
 				choices['category-'+category.id] = '';
 
 				document.getElementById('categories').innerHTML += '<div>';
-				document.getElementById('categories').innerHTML += '<div>'+category.nom+'</div>';
+				document.getElementById('categories').innerHTML += '<div><b>'+category.nom+'</b></div>';
 
 				for (const plat of category.plats) {
 					document.getElementById('categories').innerHTML += '<img title="'+plat.nom+'" id="plat-'+plat.id+'" class="category-'+category.id+'" onclick="selectPlat(this)" src="/img/' + plat.image+'" width="100" height="100" style="border-radius: 10px; padding: 5px">';
