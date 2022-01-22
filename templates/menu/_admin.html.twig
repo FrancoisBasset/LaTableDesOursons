@@ -24,6 +24,9 @@
 						<a class='nav-link' href='{{ path('admin_menu_liste') }}'>{{ 'admin.menu_bar.les_menus'|trans }}</a>
 					</li>
 					<li class='nav-item'>
+						<a class='nav-link' href='{{ path('admin_commande_liste') }}'>{{ 'admin.menu_bar.les_commandes'|trans }}</a>
+					</li>
+					<li class='nav-item'>
 						<form action='/changeLanguage' method='get'>
 							<button onclick='submit()' name='language' value='fr' style='border: none'>
 								<svg xmlns='http://www.w3.org/2000/svg' id='flag-icons-fr' viewBox='0 0 50 50' width='40' height='40' style='border-radius: 30px'>

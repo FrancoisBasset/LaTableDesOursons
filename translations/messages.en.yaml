@@ -27,6 +27,7 @@ admin:
         les_categories: Categories
         les_plats: Dishes
         les_menus: Menus
+        les_commandes: Orders
         deconnexion: Logout
     index:
         modifier_le_mot_de_passe: Change password
@@ -53,6 +54,12 @@ admin:
         prix: Price
         categories: Categories
         creer_le_menu: Create the menu
+    commandes:
+        liste_des_commandes: List of orders
+        prenom: Firstname
+        nom: Lastname
+        plats: Dishes
+        menus: Menus
     texte:
         texte_en_francais: Text in french :
         texte_en_anglais: Text in english :

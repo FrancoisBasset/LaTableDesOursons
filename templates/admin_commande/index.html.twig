@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'admin.commandes.liste_des_commandes'|trans %}
+
+{% block body %}
+	{% include 'menu/_admin.html.twig' %}
+	<br><br><br><br>
+
+	<style>
+		table {
+			width: 100%;
+		}
+
+		table, tr, td {
+			border: 1px solid black;
+			padding: 10px;
+			margin: 10px;
+		}
+	</style>
+
+	<h5>{{ 'admin.commandes.liste_des_commandes'|trans }}</h5>
+
+	<table>
+		<thead>
+			<tr>
+				<td><b>Id</b></td>
+				<td><b>Code</b></td>
+				<td><b>{{ 'admin.commandes.prenom'|trans }}</b></td>
+				<td><b>{{ 'admin.commandes.nom'|trans }}</b></td>
+				<td><b>{{ 'admin.commandes.plats'|trans }}</b></td>
+				<td><b>{{ 'admin.commandes.menus'|trans }}</b></td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for commande in commandes %}
+				<tr>
+					<td>{{ commande.id }}</td>
+					<td>{{ commande.code }}</td>
+					<td>{{ commande.prenom }}</td>
+					<td>{{ commande.nom }}</td>
+					<td>
+						{% for plat in commande.plats %}
+							<label>{{ plat.nom }}</label><br>
+						{% endfor %}
+					</td>
+					<td>
+						{% for menu in commande.commandeMenus %}
+							<table style='border: 0px'>
+								<thead>
+									<tr style='border: 0px'>
+										<td style='border: 0px'><b>{{ 'admin.commandes.nom'|trans }}</b></td>
+										<td style='border: 0px'><b>{{ 'admin.commandes.plats'|trans }}</b></td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr style='border: 0px'>
+										<td style='border: 0px'>{{ menu.menu.nom }}</td>
+										<td style='border: 0px'>
+											{% for plat in menu.plats %}
+												<label>{{ plat.nom }}</label><br>
+											{% endfor %}
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						{% endfor %}
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
