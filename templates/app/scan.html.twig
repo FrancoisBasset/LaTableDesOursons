@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Scan' %}
+
+{% block body %}
+	{% include 'menu/_app.html.twig' %}
+
+	{% if commande != null %}
+		<div onClick style='text-align: center; margin-left: 20px; margin-right: 20px;'>
+			<div style='background-color: green; padding: 20px; border-radius: 20px'>
+				<label style='font-size: 20px; color: white'>{{ commande.prenom }}</label>
+				<br>
+				<label style='font-size: 20px; color: white'>{{ commande.nom }}</label>
+			</div>
+			<br>
+			<div style='background-color: green; padding: 20px; border-radius: 20px'>
+				<label style='font-size: 20px; color: white'>{{ commande.code }}</label>
+			</div>
+			<br>
+			<div style='background-color: green; padding: 20px; border-radius: 20px'>
+				{% if commande.plats|length > 0 %}
+					<label style='font-size: 20px; color: white'><b>Plats</b></label><br>
+				{% endif %}
+				{% for plat in commande.plats %}
+					<label style='font-size: 20px; color: white'>{{ plat.nom }}</label><br>
+				{% endfor %}
+
+				{% if commande.commandeMenus|length > 0 %}
+					<label style='font-size: 20px; color: white'><b>Menus</b></label><br>
+				{% endif %}
+				{% for menu in commande.commandeMenus %}
+					<label style='font-size: 20px; color: white'>{{ menu.menu.nom }}</label><br>
+				{% endfor %}
+			</div>
+			<div>
+				<label style='font-size: 70px; color: green'>✓</label>
+			</div>
+		</div>
+	{% else %}
+		<canvas id='canvas' style="width: 100%; height: 100%" onClick='startScan()'></canvas>
+	{% endif %}
+	
+	{{ form_start(form) }}
+	{{ form_end(form) }}
+	
+	<script>
+		function startScan() {
+			navigator.mediaDevices.enumerateDevices().then(function(devices) {
+				let id = devices.filter((device) => device.kind === 'videoinput').slice(-1).pop().deviceId;
+				let constrains = {video: {optional: [{sourceId: id }]}};
+			
+				navigator.mediaDevices.getUserMedia(constrains).then(function(stream) {
+					let capturer = new ImageCapture(stream.getVideoTracks()[0]);
+					scan(capturer);
+				});
+			});
+		}
+
+		function scan(capturer) {
+			capturer.grabFrame().then(function(bitmap) {
+				let canvas = document.getElementById('canvas');
+				let context = canvas.getContext('2d');
+				context.drawImage(bitmap, 0, 0, bitmap.width, bitmap.height, 0, 0, canvas.width, canvas.height);
+				var barcodeDetector = new BarcodeDetector();
+				barcodeDetector.detect(bitmap).then(function(barcodes) {
+					if (barcodes.length > 0) {
+						context.clearRect(0, 0, canvas.width, canvas.height);
+						document.getElementById('form_code').value = barcodes[0].rawValue;
+						document.form.submit();
+					} else {
+						scan(capturer);
+					}
+				});
+			});
+		}
+	</script>
+{% endblock %}

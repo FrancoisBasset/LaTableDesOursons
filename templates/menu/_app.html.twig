@@ -1,0 +1,24 @@
+{% block body %}
+	<div style='width: 100%; text-align: center; position: fixed; width: 100%; background-color: white'>
+		<div>
+	    	<img src='{{ asset('img/favicon.png') }}' width='30px'>
+			<label class='ourson'>La Table des Oursons</label>
+			<img class='mirror' src='{{ asset('img/favicon.png') }}' width='30px'>
+		</div>
+		<div>
+			<a style='text-decoration: none' href='{{ path('app_scan') }}'>
+				<button class='btn' style='color: white; background-color: saddlebrown'>Scan</button>
+			</a>
+			<a style='text-decoration: none' href='{{ path('app_commandes') }}'>
+				<button class='btn' style='color: white; background-color: saddlebrown'>Liste des commandes</button>
+			</a>
+			<a style='text-decoration: none' href='{{ path('app_preparation') }}'>
+				<button class='btn' style='color: white; background-color: saddlebrown'>Préparer</button>
+			</a>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+{% endblock %}
