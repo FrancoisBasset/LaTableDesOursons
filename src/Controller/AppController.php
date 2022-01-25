@@ -40,9 +40,13 @@ class AppController extends AbstractController
 	/**
 	 * @Route("/app/commandes", name="app_commandes")
 	 */
-	public function commandes(): Response
+	public function commandes(CommandeRepository $commandeRepository): Response
 	{
-		return $this->render('app/commandes.html.twig');
+		$commandes = $commandeRepository->findAll();
+
+		return $this->render('app/commandes.html.twig', [
+			'commandes' => $commandes
+		]);
 	}
 
 	/**
