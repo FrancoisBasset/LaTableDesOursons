@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\CommandeRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +15,7 @@ class AppController extends AbstractController
 	/**
 	 * @Route("/app/scan", name="app_scan")
 	 */
-    public function scan(Request $request, CommandeRepository $commandeRepository): Response
+    public function scan(Request $request, CommandeRepository $commandeRepository, EntityManagerInterface $manager): Response
     {
 		$form = $this->createFormBuilder()
 			->add('code', HiddenType::class)
@@ -29,6 +30,19 @@ class AppController extends AbstractController
 			$commande = $commandeRepository->findOneBy([
 				'code' => $code
 			]);
+
+			if ($commande->getEtat() != 'commandé') {
+				return $this->render('app/scan.html.twig', [
+					'form' => $form->createView(),
+					'commande' => null,
+					'code' => $commande->getCode(),
+					'alreadyScanned' => true
+				]);
+			}
+
+			$commande->setEtat('en cours');
+			$manager->persist($commande);
+			$manager->flush();
 		}
 
         return $this->render('app/scan.html.twig', [
