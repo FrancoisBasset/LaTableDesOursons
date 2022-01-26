@@ -40,6 +40,20 @@ class AppController extends AbstractController
 				]);
 			}
 
+			$plats = $commande->getPlats();
+			for ($i = 0; $i < count($plats); $i++) {
+				$plats[$i]['prepare'] = 1;
+			}
+			foreach ($commande->getCommandeMenus() as $commandeMenu) {
+				$platsMenus = $commandeMenu->getPlats();
+				for ($i = 0; $i < count($platsMenus); $i++) {
+					$platsMenus[$i]['prepare'] = 1;
+				}
+				$commandeMenu->setPlats($platsMenus);
+				$manager->persist($commandeMenu);
+			}
+
+			$commande->setPlats($plats);
 			$commande->setEtat('en cours');
 			$manager->persist($commande);
 			$manager->flush();
@@ -66,8 +80,12 @@ class AppController extends AbstractController
 	/**
 	 * @Route("/app/preparation", name="app_preparation")
 	 */
-	public function preparation(): Response
+	public function preparation(CommandeRepository $commandeRepository): Response
 	{
-		return $this->render('app/preparation.html.twig');
+		$commandes = $commandeRepository->findAll();
+
+		return $this->render('app/preparation.html.twig', [
+			'commandes' => $commandes
+		]);
 	}
 }
