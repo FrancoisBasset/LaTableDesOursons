@@ -5,7 +5,7 @@
 {% block body %}
 	{% include 'menu/_app.html.twig' %}
 
-	<h5>Commandes à préparer</h5>
+	<h5 style='text-align: center'>Plats à préparer</h5>
 
 	{{ form_start(form) }}
 	{{ form_end(form) }}
@@ -13,18 +13,18 @@
 	{% for commande in commandes %}
 		{% for plat in commande.plats %}
 			{% if plat.prepare == 1 %}
-				<div style='background-color: green'>
-					<label>{{ plat.nom }}</label>
-					<button class='plat' data-commandeid='{{ commande.id }}' data-commandemenuid='' data-platid='{{ plat.id }}'>C'est prêt</button>
+				<div style='background-color: green; border-radius: 10px; padding: 10px; margin: 10px'>
+					<label style='color: white'>{{ plat.nom }}</label>
+					<button style='color: white; background-color: saddlebrown; float: right' class='plat' data-commandeid='{{ commande.id }}' data-commandemenuid='' data-platid='{{ plat.id }}'>C'est prêt</button>
 				</div>
 			{% endif %}
 		{% endfor %}
 		{% for commandeMenu in commande.commandeMenus %}
 			{% for plat in commandeMenu.plats %}
 				{% if plat.prepare == 1 %}
-					<div style='background-color: green'>
-						<label>{{ plat.nom }}</label>
-						<button class='plat' data-commandeid='{{ commande.id }}' data-commandemenuid='{{ commandeMenu.id }}' data-platid='{{ plat.id }}'>C'est prêt</button>
+					<div style='background-color: green; border-radius: 10px; padding: 10px; margin: 10px'>
+						<label style='color: white'>{{ plat.nom }}</label>
+						<button style='color: white; background-color: saddlebrown; float: right' class='plat' data-commandeid='{{ commande.id }}' data-commandemenuid='{{ commandeMenu.id }}' data-platid='{{ plat.id }}'>C'est prêt</button>
 					</div>
 				{% endif %}
 			{% endfor %}
