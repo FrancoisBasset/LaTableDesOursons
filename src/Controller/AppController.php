@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CommandeMenuRepository;
 use App\Repository\CommandeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -80,7 +81,7 @@ class AppController extends AbstractController
 	/**
 	 * @Route("/app/preparation", name="app_preparation")
 	 */
-	public function preparation(CommandeRepository $commandeRepository, Request $request, EntityManagerInterface $manager): Response
+	public function preparation(CommandeRepository $commandeRepository, CommandeMenuRepository $commandeMenuRepository, Request $request, EntityManagerInterface $manager): Response
 	{
 		$commandes = $commandeRepository->findAll();
 
@@ -96,32 +97,30 @@ class AppController extends AbstractController
 			$commande_menu_id = $form->get('commande_menu_id')->getData();
 			$plat_id = $form->get('plat_id')->getData();
 			
-			foreach ($commandes as $commande) {
-				if ($commande_id == $commande->getId()) {
-					if ($commande_menu_id == null) {
-						$plats = $commande->getPlats();
-						for ($i = 0; $i < count($plats); $i++) {
-							if ($plat_id == $plats[$i]['id']) {
-								$plats[$i]['prepare'] = 2;
-								break;
-							}
-						}
-						$commande->setPlats($plats);
-						$manager->persist($commande);
-					} else {
-						foreach ($commande->getCommandeMenus() as $commandeMenu) {
-							$plats = $commandeMenu->getPlats();
-							for ($i = 0; $i < count($plats); $i++) {
-								if ($plat_id == $plats[$i]['id']) {
-									$plats[$i]['prepare'] = 2;
-									break;
-								}
-							}
-							$commandeMenu->setPlats($plats);
-							$manager->persist($commandeMenu);
-						}
+			if ($commande_menu_id == null) {
+				$commande = $commandeRepository->find($commande_id);
+
+				$plats = $commande->getPlats();
+				for ($i = 0; $i < count($plats); $i++) {
+					if ($plat_id == $plats[$i]['id']) {
+						$plats[$i]['prepare'] = 2;
+						break;
 					}
 				}
+				$commande->setPlats($plats);
+				$manager->persist($commande);
+			} else {
+				$commandeMenu = $commandeMenuRepository->find($commande_menu_id);
+
+				$plats = $commandeMenu->getPlats();
+				for ($i = 0; $i < count($plats); $i++) {
+					if ($plat_id == $plats[$i]['id']) {
+						$plats[$i]['prepare'] = 2;
+						break;
+					}
+				}
+				$commandeMenu->setPlats($plats);
+				$manager->persist($commandeMenu);
 			}
 			
 			$manager->flush();
