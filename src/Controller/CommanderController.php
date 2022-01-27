@@ -56,12 +56,14 @@ class CommanderController extends AbstractController
 				$commande->addCommandeMenu($commandeMenu);
 			}
 			$plats = [];
-			foreach (explode(',', $form->get('plats')->getData()) as $id_plat) {
-				$plat = $platRepository->find($id_plat);
-				$p = $plat->jsonSerialize();
-				$p['prepare'] = 0;
-				array_push($plats, $p);
-				$prix += $plat->getPrix();
+			if ($form->get('plats')->getData() != null) {
+				foreach (explode(',', $form->get('plats')->getData()) as $id_plat) {
+					$plat = $platRepository->find($id_plat);
+					$p = $plat->jsonSerialize();
+					$p['prepare'] = 0;
+					array_push($plats, $p);
+					$prix += $plat->getPrix();
+				}
 			}
 			$commande->setPrix($prix);
 			$commande->setPlats($plats);
