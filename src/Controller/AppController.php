@@ -122,6 +122,28 @@ class AppController extends AbstractController
 				$commandeMenu->setPlats($plats);
 				$manager->persist($commandeMenu);
 			}
+
+			$termine1 = true;
+			$termine2 = true;
+
+			$commande = $commandeRepository->find($commande_id);
+			$plats = $commande->getPlats();
+			$termine1 = count(array_filter($plats, function($plat) { return $plat['prepare'] != 2; })) == 0;
+
+			foreach ($commande->getCommandeMenus() as $commandeMenu) {
+				$plats = $commandeMenu->getPlats();
+				$termine2 = count(array_filter($plats, function($plat) { return $plat['prepare'] != 2; })) == 0;
+				
+				if ($termine2 == false) {
+					break;
+				}
+			}
+
+			if ($termine1 && $termine2) {
+				$commande = $commandeRepository->find($commande_id);
+				$commande->setEtat('terminé');
+				$manager->persist($commande);
+			}
 			
 			$manager->flush();
 			$commandes = $commandeRepository->findAll();
