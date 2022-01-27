@@ -8,35 +8,35 @@
 	<h5 style='text-align: center'>Liste des commandes</h5>
 
 	{% for commande in commandes %}
-		<div style='background-color: saddlebrown; margin-bottom: 10px; border-radius: 10px; margin-left: 5px; margin-right: 5px'>
-			<div style='margin: 10px'>
-				<div style='float: left'>
-					<label style='color: white'>{{ commande.code }}</label>
+		{% if commande.etat != 'terminé' %}
+			<div style='background-color: saddlebrown; margin-bottom: 10px; border-radius: 10px; margin-left: 5px; margin-right: 5px'>
+				<div style='margin: 10px'>
+					<div style='float: left'>
+						<label style='color: white'>{{ commande.code }}</label>
+					</div>
+					<div style='float: right'>
+						<label style='color: white'>{{ commande.prenom }} {{ commande.nom }}</label>
+					</div>
 				</div>
-				<div style='float: right'>
-					<label style='color: white'>{{ commande.prenom }} {{ commande.nom }}</label>
+				<br>
+				<div>
+					{% for plat in commande.plats %}
+						<label style='color: white; background-color: green; padding: 5px; border-radius: 10px'>{{ plat.nom }}</label>
+					{% endfor %}
+				</div>
+				<div>
+					{% for menu in commande.commandeMenus %}
+						<label style='color: white; background-color: springgreen; padding: 5px; border-radius: 10px'>{{ menu.menu.nom }}</label>
+					{% endfor %}
+				</div>
+				<div style='text-align: center'>
+					{% if commande.etat == 'commandé' %}
+						<label style='color: white; background-color: red; padding: 5px; border-radius: 10px'>Commandé</label>
+					{% elseif commande.etat == 'en cours' %}
+						<label style='color: white; background-color: red; padding: 5px; border-radius: 10px'>En cours</label>
+					{% endif %}
 				</div>
 			</div>
-			<br>
-			<div>
-				{% for plat in commande.plats %}
-					<label style='color: white; background-color: green; padding: 5px; border-radius: 10px'>{{ plat.nom }}</label>
-				{% endfor %}
-			</div>
-			<div>
-				{% for menu in commande.commandeMenus %}
-					<label style='color: white; background-color: springgreen; padding: 5px; border-radius: 10px'>{{ menu.menu.nom }}</label>
-				{% endfor %}
-			</div>
-			<div style='text-align: center'>
-				{% if commande.etat == 'commandé' %}
-					<label style='color: white; background-color: red; padding: 5px; border-radius: 10px'>Commandé</label>
-				{% elseif commande.etat == 'en cours' %}
-					<label style='color: white; background-color: red; padding: 5px; border-radius: 10px'>En cours</label>
-				{% else %}
-					<label style='color: white; background-color: red; padding: 5px; border-radius: 10px'>Terminé</label>
-				{% endif %}
-			</div>
-		</div>
+		{% endif %}
 	{% endfor %}
 {% endblock %}
