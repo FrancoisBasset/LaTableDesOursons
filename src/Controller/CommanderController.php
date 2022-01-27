@@ -94,6 +94,7 @@ class CommanderController extends AbstractController
 			foreach (explode(',', $form2->get('plats')->getData()) as $id_plat) {
 				$plat = $platRepository->find($id_plat);
 				array_push($plats_menu, [
+					'id' => $plat->getId(),
 					'nom' => $plat->getNom(),
 					'prix' => $plat->getPrix(),
 					'image' => $plat->getImage(),

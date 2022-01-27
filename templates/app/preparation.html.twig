@@ -7,13 +7,38 @@
 
 	<h5>Commandes à préparer</h5>
 
+	{{ form_start(form) }}
+	{{ form_end(form) }}
+
 	{% for commande in commandes %}
 		{% for plat in commande.plats %}
 			{% if plat.prepare == 1 %}
-				<div>
-					- {{ plat.nom }}
+				<div style='background-color: green'>
+					<label>{{ plat.nom }}</label>
+					<button class='plat' data-commandeid='{{ commande.id }}' data-commandemenuid='' data-platid='{{ plat.id }}'>C'est prêt</button>
 				</div>
 			{% endif %}
 		{% endfor %}
+		{% for commandeMenu in commande.commandeMenus %}
+			{% for plat in commandeMenu.plats %}
+				{% if plat.prepare == 1 %}
+					<div style='background-color: green'>
+						<label>{{ plat.nom }}</label>
+						<button class='plat' data-commandeid='{{ commande.id }}' data-commandemenuid='{{ commandeMenu.id }}' data-platid='{{ plat.id }}'>C'est prêt</button>
+					</div>
+				{% endif %}
+			{% endfor %}
+		{% endfor %}
 	{% endfor %}
+
+	<script>
+		Array.from(document.getElementsByClassName('plat')).forEach(function(plat) {
+			plat.addEventListener('click', function() {
+				document.getElementById('form_commande_id').value = plat.dataset.commandeid;
+				document.getElementById('form_commande_menu_id').value = plat.dataset.commandemenuid;
+				document.getElementById('form_plat_id').value = plat.dataset.platid;
+				document.form.submit();
+			});
+		});
+	</script>
 {% endblock %}

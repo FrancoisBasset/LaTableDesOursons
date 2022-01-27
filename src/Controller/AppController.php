@@ -80,11 +80,56 @@ class AppController extends AbstractController
 	/**
 	 * @Route("/app/preparation", name="app_preparation")
 	 */
-	public function preparation(CommandeRepository $commandeRepository): Response
+	public function preparation(CommandeRepository $commandeRepository, Request $request, EntityManagerInterface $manager): Response
 	{
 		$commandes = $commandeRepository->findAll();
 
+		$form = $this->createFormBuilder()
+			->add('commande_id', HiddenType::class)
+			->add('commande_menu_id', HiddenType::class)
+			->add('plat_id', HiddenType::class)
+			->getForm();
+		$form->handleRequest($request);
+
+		if ($form->isSubmitted() && $form->isValid()) {
+			$commande_id = $form->get('commande_id')->getData();
+			$commande_menu_id = $form->get('commande_menu_id')->getData();
+			$plat_id = $form->get('plat_id')->getData();
+			
+			foreach ($commandes as $commande) {
+				if ($commande_id == $commande->getId()) {
+					if ($commande_menu_id == null) {
+						$plats = $commande->getPlats();
+						for ($i = 0; $i < count($plats); $i++) {
+							if ($plat_id == $plats[$i]['id']) {
+								$plats[$i]['prepare'] = 2;
+								break;
+							}
+						}
+						$commande->setPlats($plats);
+						$manager->persist($commande);
+					} else {
+						foreach ($commande->getCommandeMenus() as $commandeMenu) {
+							$plats = $commandeMenu->getPlats();
+							for ($i = 0; $i < count($plats); $i++) {
+								if ($plat_id == $plats[$i]['id']) {
+									$plats[$i]['prepare'] = 2;
+									break;
+								}
+							}
+							$commandeMenu->setPlats($plats);
+							$manager->persist($commandeMenu);
+						}
+					}
+				}
+			}
+			
+			$manager->flush();
+			$commandes = $commandeRepository->findAll();
+		}
+
 		return $this->render('app/preparation.html.twig', [
+			'form' => $form->createView(),
 			'commandes' => $commandes
 		]);
 	}
