@@ -7,12 +7,27 @@ use App\Repository\CommandeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AppController extends AbstractController
 {
+	/**
+	 * @Route("/sw.js", name="sw")
+	 */
+    public function sw(): BinaryFileResponse
+    {
+		$webPath = $this->getParameter("kernel.project_dir");
+        $filename = "/public/sw/sw.js";
+
+		$response = new BinaryFileResponse($webPath.$filename);
+		$response->headers->set('Content-Type', 'text/javascript');
+
+		return $response;
+	}
+
 	/**
 	 * @Route("/app/scan", name="app_scan")
 	 */
