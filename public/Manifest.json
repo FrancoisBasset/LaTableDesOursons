@@ -1,0 +1,22 @@
+{
+	"short_name": "La Table des Oursons",
+	"name": "La Table des Oursons",
+	"icons": [
+		{
+			"src": "/img/icon_192x192.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "/img/icon_256x256.png",
+			"type": "image/png",
+			"sizes": "256x256"
+		}
+	],
+	"start_url": "/",
+	"background_color": "saddlebrown",
+	"display": "standalone",
+	"orientation": "portrait",
+	"theme_color": "saddlebrown",
+	"description": "La Table des Oursons"
+}
