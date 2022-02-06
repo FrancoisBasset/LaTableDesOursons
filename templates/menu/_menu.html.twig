@@ -1,6 +1,6 @@
 {% block body %}
 	<nav class='navbar navbar-expand-lg navbar-light bg-light' style='position: fixed; width: 100%'>
-  		<div class='container-fluid'>
+  		<div class='container-fluid' style='background-color: saddlebrown'>
     		<a class='navbar-brand ourson' href='{{ path('accueil') }}'>
 				<img src='{{ asset('img/favicon.png') }}' width='20px'>
 				La Table des Oursons
@@ -43,11 +43,9 @@
 							</button>
 						</form>
 					</li>
-					<li class='nav-item'>
-						<label class='nav-link' style='color: white; background-color: springgreen; font-size: 22px; padding-bottom: 9px'><b>{{ getTemperature() }}</b><label>
-					</li>
-					<li class='nav-item'>
-						<img src='{{ getIcon() }}' style='background-color: springgreen'>
+					<li class='nav-item' style='color: white; background-color: sienna; border-radius: 10px'>
+						<label><b>{{ getTemperature() }}</b><label>
+						<img src='{{ getIcon() }}'>
 					</li>
 					{% if (app.user) %}
 						<li class='nav-item'>
