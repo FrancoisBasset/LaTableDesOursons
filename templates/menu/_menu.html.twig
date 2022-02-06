@@ -68,7 +68,7 @@
 {% block javascripts %}
 	<script>
 		const door_admin = document.getElementById('door_admin');
-		door_admin.oncontextmenu = function(e) {
+		door_admin.onclick = function(e) {
 			e.preventDefault();
 			window.location.href = '{{ path('admin_login') }}';
 		};
