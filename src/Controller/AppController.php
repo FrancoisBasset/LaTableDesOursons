@@ -15,12 +15,27 @@ use Symfony\Component\Routing\Annotation\Route;
 class AppController extends AbstractController
 {
 	/**
+	 * @Route("/apk", name="apk")
+	 */
+	public function apk(): BinaryFileResponse
+	{
+		$webPath = $this->getParameter('kernel.project_dir');
+        $filename = '/public/latabledesoursons.apk';
+
+		$response = new BinaryFileResponse($webPath.$filename);
+		$response->headers->set('Content-Type', 'application/apk');
+		$response->headers->set('Content-Disposition', 'filename=latabledesoursons.apk');
+
+		return $response;
+	}
+
+	/**
 	 * @Route("/sw.js", name="sw")
 	 */
     public function sw(): BinaryFileResponse
     {
-		$webPath = $this->getParameter("kernel.project_dir");
-        $filename = "/public/sw/sw.js";
+		$webPath = $this->getParameter('kernel.project_dir');
+        $filename = '/public/sw/sw.js';
 
 		$response = new BinaryFileResponse($webPath.$filename);
 		$response->headers->set('Content-Type', 'text/javascript');
